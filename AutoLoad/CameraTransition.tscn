@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://css7o45nr2rr8"]
+
+[sub_resource type="GDScript" id="GDScript_ax86y"]
+
+[node name="CameraTransition" type="Node"]
+script = SubResource("GDScript_ax86y")
+
+[node name="Camera3D" type="Camera3D" parent="."]

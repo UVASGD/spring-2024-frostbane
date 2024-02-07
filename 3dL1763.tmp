@@ -1,0 +1,403 @@
+[gd_scene load_steps=27 format=3 uid="uid://r7svjojjwyyp"]
+
+[ext_resource type="Texture2D" uid="uid://bobf668bose78" path="res://nightsky.png" id="1_a5b0s"]
+[ext_resource type="Texture2D" uid="uid://ddre5gdff480d" path="res://GroundTexture/TCom_Gore_512_albedo.jpg" id="2_4yfe2"]
+[ext_resource type="PackedScene" uid="uid://ddpd0f3yfnbln" path="res://Player.tscn" id="2_y2ut8"]
+[ext_resource type="Texture2D" uid="uid://daso0tpqi67we" path="res://GroundTexture/TCom_Gore_512_ao.jpg" id="3_vuedf"]
+[ext_resource type="Texture2D" uid="uid://buyo81ls834ca" path="res://GroundTexture/TCom_Gore_512_height.jpg" id="4_2k2sf"]
+[ext_resource type="Texture2D" uid="uid://cw48ds2ci6nr0" path="res://GroundTexture/TCom_Gore_512_normal.jpg" id="5_n338h"]
+[ext_resource type="Texture2D" uid="uid://c55jga0ongwi" path="res://GroundTexture/TCom_Gore_512_roughness.jpg" id="6_660eh"]
+[ext_resource type="MeshLibrary" uid="uid://d08jo8pwlvem2" path="res://treeMesh.tres" id="7_dus8p"]
+[ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://foliageMesh.tres" id="8_6h2d5"]
+[ext_resource type="PackedScene" uid="uid://danr4a1nlo0f7" path="res://campfire.tscn" id="9_rgsqs"]
+[ext_resource type="PackedScene" uid="uid://ctsd6ssag23pv" path="res://Assets/Helicopter/low_poly_helicopter.glb" id="12_02jqs"]
+[ext_resource type="AudioStream" uid="uid://c0m3vtg2nosvh" path="res://Music/campfire-103566.mp3" id="12_ko15c"]
+[ext_resource type="Script" path="res://cam_rig.gd" id="12_mebtw"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ch8lp"]
+panorama = ExtResource("1_a5b0s")
+
+[sub_resource type="Sky" id="Sky_ss3j2"]
+sky_material = SubResource("PanoramaSkyMaterial_ch8lp")
+
+[sub_resource type="Environment" id="Environment_ruyhh"]
+background_mode = 2
+sky = SubResource("Sky_ss3j2")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.113725, 0.12549, 0.14902, 1)
+fog_density = 0.04
+fog_sky_affect = 0.85
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ok1pn"]
+albedo_texture = ExtResource("2_4yfe2")
+metallic_specular = 0.16
+roughness_texture = ExtResource("6_660eh")
+normal_enabled = true
+normal_texture = ExtResource("5_n338h")
+ao_enabled = true
+ao_texture = ExtResource("3_vuedf")
+heightmap_enabled = true
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = ExtResource("4_2k2sf")
+uv1_scale = Vector3(20, 20, 20)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nd5s3"]
+material = SubResource("StandardMaterial3D_ok1pn")
+size = Vector2(100, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_gs850"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
+[sub_resource type="Curve" id="Curve_a7leb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.38961, 0.989474), 0.0, 0.0, 0, 0, Vector2(0.720779, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_r2ul7"]
+curve = SubResource("Curve_a7leb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x6hfn"]
+emission_shape = 3
+emission_box_extents = Vector3(100, 0, 100)
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+scale_min = 0.2
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_r2ul7")
+turbulence_noise_strength = 0.55
+turbulence_noise_scale = 0.35
+turbulence_noise_speed_random = 0.07
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_36wdv"]
+
+[sub_resource type="Animation" id="Animation_po0d3"]
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cam_rig/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.129, 8.281, 10.285)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cam_rig/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0349066, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cam_rig/low_poly_helicopter:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("cam_rig/low_poly_helicopter:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(18.52, 11.224, -2.558)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("campfire:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("campfire2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("cam_rig/low_poly_helicopter:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("cam_rig/Label:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_efwm0"]
+resource_name = "scene"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.426, 8.555, 11.586)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cam_rig/Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.129, 8.281, 10.285), Vector3(-2.796, 1.766, 0.18)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cam_rig/Camera3D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0349066, 0, 0), Vector3(0.296706, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("cam_rig/low_poly_helicopter:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.855211, -3.26377, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("cam_rig/low_poly_helicopter:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(18.52, 11.224, -2.558), Vector3(-2.7, 2.329, -2.558)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("campfire:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("campfire2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 3.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = false
+tracks/7/path = NodePath("cam_rig/low_poly_helicopter:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("cam_rig/Label:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bkv2h"]
+_data = {
+"RESET": SubResource("Animation_po0d3"),
+"scene": SubResource("Animation_efwm0")
+}
+
+[node name="World" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.312267, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ruyhh")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_y2ut8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 6)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_nd5s3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_gs850")
+
+[node name="Trees" type="GridMap" parent="."]
+mesh_library = ExtResource("7_dus8p")
+cell_size = Vector3(1, 2, 1)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 6, 0, 65524, 9, 0, 65516, 1, 0, 65523, 65528, 0, 0, 65531, 0, 18, 0, 0, 16, 6, 0, 15, 11, 0, 12, 15, 0, 9, 20, 0, 4, 24, 0, 65534, 26, 0, 65528, 26, 0, 65516, 24, 0, 65510, 21, 0, 65505, 16, 0, 65501, 10, 0, 65500, 4, 0, 65503, 65534, 0, 65506, 65528, 0, 65513, 65516, 0, 65519, 65515, 0, 65525, 65514, 0, 65531, 65514, 0, 1, 65515, 0, 7, 65517, 0, 12, 65520, 0, 17, 65524, 0, 19, 65530, 0, 22, 65534, 0, 21, 4, 0, 20, 10, 0, 17, 16, 0, 14, 20, 0, 9, 25, 0, 3, 29, 0, 65531, 30, 0, 65511, 26, 0, 65505, 21, 0, 65500, 15, 0, 65496, 8, 0, 65497, 65535, 0, 65501, 65529, 0, 65503, 65523, 0, 65515, 65511, 0, 65521, 65510, 0, 65528, 65510, 0, 65535, 65510, 0, 6, 65512, 0, 12, 65515, 0, 17, 65519, 0, 22, 65526, 0, 22, 65521, 0, 26, 65530, 0, 65500, 65518, 0, 65502, 65513, 0, 65503, 65506, 0, 65516, 30, 0, 65521, 34, 0, 65526, 38, 0, 65516, 35, 0, 65520, 40, 0, 65511, 32, 0, 65497, 65509, 0, 65509, 65506, 0, 65514, 65506, 0, 65511, 65501, 0, 65506, 65502, 0, 65499, 65503, 0, 65496, 65514, 0)
+}
+
+[node name="Foliage" type="GridMap" parent="."]
+mesh_library = ExtResource("8_6h2d5")
+cell_size = Vector3(0.5, 2, 0.5)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(15, 12, 0, 65528, 14, 0, 65521, 0, 0, 26, 4, 0, 10, 26, 0, 65516, 20, 0, 65509, 17, 0, 65499, 12, 0, 65504, 2, 0, 65512, 65525, 0, 65519, 65511, 0, 65512, 65514, 0, 5, 65512, 0, 14, 65517, 0, 7, 65520, 0, 36, 65518, 0, 34, 65526, 0, 25, 65514, 0, 43, 65532, 0, 65500, 21, 0, 65504, 65529, 0, 65520, 65512, 0, 14, 65510, 0)
+}
+
+[node name="campfire" parent="." instance=ExtResource("9_rgsqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.893, 2.166, -3.721)
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="campfire"]
+light_color = Color(1, 0.462745, 0, 1)
+omni_range = 9.855
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="campfire"]
+stream = ExtResource("12_ko15c")
+volume_db = 23.063
+unit_size = 0.1
+autoplay = true
+max_distance = 20.0
+
+[node name="campfire2" parent="." instance=ExtResource("9_rgsqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.779, 3.126, -2.19)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="campfire2"]
+light_color = Color(1, 0.462745, 0, 1)
+omni_range = 9.855
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="campfire2"]
+stream = ExtResource("12_ko15c")
+volume_db = 23.063
+unit_size = 0.1
+autoplay = true
+max_distance = 20.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.68342, 0)
+visible = false
+cast_shadow = 0
+amount = 10000
+lifetime = 5.0
+randomness = 0.5
+visibility_aabb = AABB(-47.9182, -4, -48.8196, 95.8363, 8, 97.6391)
+process_material = SubResource("ParticleProcessMaterial_x6hfn")
+draw_pass_1 = SubResource("SphereMesh_36wdv")
+
+[node name="cam_rig" type="Node3D" parent="."]
+script = ExtResource("12_mebtw")
+
+[node name="Camera3D" type="Camera3D" parent="cam_rig"]
+transform = Transform3D(1, 0, 0, 0, 0.999391, -0.0348995, 0, 0.0348995, 0.999391, 1.129, 8.281, 10.285)
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="cam_rig"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_bkv2h")
+}
+
+[node name="low_poly_helicopter" parent="cam_rig" instance=ExtResource("12_02jqs")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.52, 11.224, -2.558)
+
+[node name="Label" type="Label" parent="cam_rig"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -13.0
+offset_right = 67.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Epstein is coming"

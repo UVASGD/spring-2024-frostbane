@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddpd0f3yfnbln"]
+
+[ext_resource type="Script" path="res://Assets/Spider/Player.gd" id="1_1xrxa"]
+[ext_resource type="AudioStream" uid="uid://cn0dqise77kw7" path="res://Music/wind-outside-sound-ambient-141989.mp3" id="2_blckl"]
+[ext_resource type="AudioStream" uid="uid://d1q0r14tv8b6v" path="res://Music/steps-on-snow-30305.mp3" id="3_onwb1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3jev3"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7n0m4"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[sub_resource type="Animation" id="Animation_an35p"]
+resource_name = "CameraTilt"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Neck/Camera3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.1, 1, 0, 0, 0, 1, 0.3, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yyxq4"]
+_data = {
+"CameraTilt": SubResource("Animation_an35p")
+}
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_1xrxa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_3jev3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_7n0m4")
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.626994, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0274957, -0.290297)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Neck/Camera3D"]
+spot_range = 15.0
+spot_angle = 30.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21581, 0.510149, 0.052413)
+stream = ExtResource("2_blckl")
+autoplay = true
+max_distance = 2361.66
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_onwb1")
+
+[node name="Animation Players" type="Node" parent="."]
+
+[node name="Headbob Animation" type="AnimationPlayer" parent="Animation Players"]
+libraries = {
+"": SubResource("AnimationLibrary_yyxq4")
+}
