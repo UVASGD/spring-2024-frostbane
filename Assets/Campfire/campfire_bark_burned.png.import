@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgseu6tn2subu"
-path.s3tc="res://.godot/imported/tree_bark.png-baa32c2cfa80b368664e3e9501f21d03.s3tc.ctex"
+uid="uid://cwb46w0c3qc7"
+path.s3tc="res://.godot/imported/campfire_bark_burned.png-2ec0d1678c85b9f7ff779ce1eab58467.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://tree_bark.png"
-dest_files=["res://.godot/imported/tree_bark.png-baa32c2cfa80b368664e3e9501f21d03.s3tc.ctex"]
+source_file="res://Assets/Campfire/campfire_bark_burned.png"
+dest_files=["res://.godot/imported/campfire_bark_burned.png-2ec0d1678c85b9f7ff779ce1eab58467.s3tc.ctex"]
 
 [params]
 

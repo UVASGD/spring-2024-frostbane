@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://danr4a1nlo0f7"]
 
-[ext_resource type="PackedScene" uid="uid://dhp4c2wawljy4" path="res://campfire.glb" id="1_dfscj"]
+[ext_resource type="PackedScene" uid="uid://dhp4c2wawljy4" path="res://Assets/Campfire/campfire.glb" id="1_dfscj"]
 [ext_resource type="Texture2D" uid="uid://dshy8mwi8u27k" path="res://fire.png" id="2_e1535"]
 [ext_resource type="Texture2D" uid="uid://viduk7qc0y0p" path="res://smoke_01.png" id="3_iq3ee"]
 

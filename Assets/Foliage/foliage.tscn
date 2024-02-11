@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://15g1fxwoi755"]
 
-[ext_resource type="Texture2D" uid="uid://b4ntl6bntpoxg" path="res://foliage_foliage.png" id="1_piqx8"]
+[ext_resource type="Texture2D" uid="uid://b4ntl6bntpoxg" path="res://Assets/Foliage/foliage_foliage.png" id="1_piqx8"]
 
 [sub_resource type="Shader" id="Shader_8v1nt"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.2.stable's StandardMaterial3D.

@@ -1,26 +1,26 @@
 [gd_scene load_steps=38 format=3 uid="uid://r7svjojjwyyp"]
 
-[ext_resource type="Texture2D" uid="uid://bobf668bose78" path="res://nightsky.png" id="1_a5b0s"]
-[ext_resource type="Texture2D" uid="uid://ddre5gdff480d" path="res://GroundTexture/TCom_Gore_512_albedo.jpg" id="2_4yfe2"]
-[ext_resource type="Texture2D" uid="uid://daso0tpqi67we" path="res://GroundTexture/TCom_Gore_512_ao.jpg" id="3_vuedf"]
-[ext_resource type="Script" path="res://Assets/Spider/PlayerCopy.gd" id="4_2dsun"]
-[ext_resource type="Texture2D" uid="uid://buyo81ls834ca" path="res://GroundTexture/TCom_Gore_512_height.jpg" id="4_2k2sf"]
-[ext_resource type="AudioStream" uid="uid://gaybd4taxkmk" path="res://Music/scream-with-echo-46585.mp3" id="4_tjy7m"]
-[ext_resource type="AudioStream" uid="uid://cknkvv0rbvn4n" path="res://Music/suspense-creepy-ominous-ambience-14569.mp3" id="5_8vwai"]
-[ext_resource type="Texture2D" uid="uid://cw48ds2ci6nr0" path="res://GroundTexture/TCom_Gore_512_normal.jpg" id="5_n338h"]
-[ext_resource type="Texture2D" uid="uid://c55jga0ongwi" path="res://GroundTexture/TCom_Gore_512_roughness.jpg" id="6_660eh"]
-[ext_resource type="MeshLibrary" uid="uid://d08jo8pwlvem2" path="res://treeMesh.tres" id="7_dus8p"]
-[ext_resource type="PackedScene" uid="uid://pmanjk2apv5a" path="res://Assets/Spider/spider_lite_.tscn" id="7_mp1bd"]
-[ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://foliageMesh.tres" id="8_6h2d5"]
-[ext_resource type="PackedScene" uid="uid://danr4a1nlo0f7" path="res://campfire.tscn" id="9_rgsqs"]
-[ext_resource type="PackedScene" uid="uid://ctsd6ssag23pv" path="res://Assets/Helicopter/low_poly_helicopter.glb" id="12_02jqs"]
-[ext_resource type="AudioStream" uid="uid://c0m3vtg2nosvh" path="res://Music/campfire-103566.mp3" id="12_ko15c"]
-[ext_resource type="Script" path="res://cam_rig.gd" id="12_mebtw"]
-[ext_resource type="AudioStream" uid="uid://cn0dqise77kw7" path="res://Music/wind-outside-sound-ambient-141989.mp3" id="14_jqooy"]
-[ext_resource type="AudioStream" uid="uid://d1q0r14tv8b6v" path="res://Music/steps-on-snow-30305.mp3" id="15_y1rka"]
+[ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
+[ext_resource type="Texture2D" uid="uid://bobf668bose78" path="res://Assets/Sky/nightsky.png" id="2_52qce"]
+[ext_resource type="Script" path="res://cam_rig.gd" id="3_hfc0r"]
+[ext_resource type="AudioStream" uid="uid://gaybd4taxkmk" path="res://Music/scream-with-echo-46585.mp3" id="4_tjcao"]
+[ext_resource type="AudioStream" uid="uid://cknkvv0rbvn4n" path="res://Music/suspense-creepy-ominous-ambience-14569.mp3" id="5_2vp4n"]
+[ext_resource type="Script" path="res://Assets/Spider/PlayerCopy.gd" id="6_ueyud"]
+[ext_resource type="PackedScene" uid="uid://pmanjk2apv5a" path="res://Assets/Spider/spider_lite_.tscn" id="7_cagd0"]
+[ext_resource type="AudioStream" uid="uid://cn0dqise77kw7" path="res://Music/wind-outside-sound-ambient-141989.mp3" id="8_m8l0l"]
+[ext_resource type="AudioStream" uid="uid://d1q0r14tv8b6v" path="res://Music/steps-on-snow-30305.mp3" id="9_8o253"]
+[ext_resource type="Texture2D" uid="uid://ddre5gdff480d" path="res://GroundTexture/TCom_Gore_512_albedo.jpg" id="10_tb1sr"]
+[ext_resource type="Texture2D" uid="uid://daso0tpqi67we" path="res://GroundTexture/TCom_Gore_512_ao.jpg" id="11_vt40j"]
+[ext_resource type="Texture2D" uid="uid://buyo81ls834ca" path="res://GroundTexture/TCom_Gore_512_height.jpg" id="12_bjywo"]
+[ext_resource type="Texture2D" uid="uid://cw48ds2ci6nr0" path="res://GroundTexture/TCom_Gore_512_normal.jpg" id="13_lxavp"]
+[ext_resource type="Texture2D" uid="uid://c55jga0ongwi" path="res://GroundTexture/TCom_Gore_512_roughness.jpg" id="14_4b3og"]
+[ext_resource type="MeshLibrary" uid="uid://d08jo8pwlvem2" path="res://Assets/Tree/treeMesh.tres" id="15_6eyif"]
+[ext_resource type="PackedScene" uid="uid://danr4a1nlo0f7" path="res://Assets/Campfire/campfire.tscn" id="16_b8f5f"]
+[ext_resource type="AudioStream" uid="uid://c0m3vtg2nosvh" path="res://Music/campfire-103566.mp3" id="17_b06pn"]
+[ext_resource type="PackedScene" uid="uid://ctsd6ssag23pv" path="res://Assets/Helicopter/low_poly_helicopter.glb" id="18_1msqf"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ch8lp"]
-panorama = ExtResource("1_a5b0s")
+panorama = ExtResource("2_52qce")
 
 [sub_resource type="Sky" id="Sky_ss3j2"]
 sky_material = SubResource("PanoramaSkyMaterial_ch8lp")
@@ -209,7 +209,7 @@ tracks/0/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("4_tjy7m")
+"stream": ExtResource("4_tjcao")
 }],
 "times": PackedFloat32Array(17.1)
 }
@@ -224,7 +224,7 @@ tracks/1/keys = {
 "clips": [{
 "end_offset": 179.55,
 "start_offset": 0.0,
-"stream": ExtResource("5_8vwai")
+"stream": ExtResource("5_2vp4n")
 }],
 "times": PackedFloat32Array(-6.5)
 }
@@ -412,18 +412,18 @@ agent_radius = 1.0
 agent_max_slope = 8.93
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ok1pn"]
-albedo_texture = ExtResource("2_4yfe2")
+albedo_texture = ExtResource("10_tb1sr")
 metallic_specular = 0.16
-roughness_texture = ExtResource("6_660eh")
+roughness_texture = ExtResource("14_4b3og")
 normal_enabled = true
-normal_texture = ExtResource("5_n338h")
+normal_texture = ExtResource("13_lxavp")
 ao_enabled = true
-ao_texture = ExtResource("3_vuedf")
+ao_texture = ExtResource("11_vt40j")
 heightmap_enabled = true
 heightmap_deep_parallax = true
 heightmap_min_layers = 8
 heightmap_max_layers = 32
-heightmap_texture = ExtResource("4_2k2sf")
+heightmap_texture = ExtResource("12_bjywo")
 uv1_scale = Vector3(20, 20, 20)
 texture_filter = 0
 
@@ -440,7 +440,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.312267, 0)
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="Foliage" type="GridMap" parent="Environment"]
-mesh_library = ExtResource("8_6h2d5")
+mesh_library = ExtResource("1_f3t52")
 cell_size = Vector3(0.5, 2, 0.5)
 cell_center_y = false
 data = {
@@ -461,7 +461,7 @@ process_material = SubResource("ParticleProcessMaterial_x6hfn")
 draw_pass_1 = SubResource("SphereMesh_36wdv")
 
 [node name="cam_rig" type="Node3D" parent="."]
-script = ExtResource("12_mebtw")
+script = ExtResource("3_hfc0r")
 
 [node name="Camera3D" type="Camera3D" parent="cam_rig"]
 transform = Transform3D(1, 0, 0, 0, 0.999391, -0.0348995, 0, 0.0348995, 0.999391, 1.129, 8.281, 10.285)
@@ -490,7 +490,7 @@ text = "Epstein is coming"
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70557, 1.55746, 5.05283)
-script = ExtResource("4_2dsun")
+script = ExtResource("6_ueyud")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_e6h0p")
@@ -508,19 +508,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0274956, -0.290297)
 spot_range = 15.0
 spot_angle = 30.0
 
-[node name="spider lite " parent="Player/Neck" instance=ExtResource("7_mp1bd")]
+[node name="spider lite " parent="Player/Neck" instance=ExtResource("7_cagd0")]
 transform = Transform3D(1, 0, 0, 0, 0.109596, 0.993976, 0, -0.993976, 0.109596, 0.13708, -3.87455, -1.15181)
 visible = false
 script = null
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21581, 0.510149, 0.052413)
-stream = ExtResource("14_jqooy")
+stream = ExtResource("8_m8l0l")
 autoplay = true
 max_distance = 2361.66
 
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="Player"]
-stream = ExtResource("15_y1rka")
+stream = ExtResource("9_8o253")
 
 [node name="Animation Players" type="Node" parent="Player"]
 
@@ -551,14 +551,14 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_gs850")
 
 [node name="Trees" type="GridMap" parent="NavigationRegion3D"]
-mesh_library = ExtResource("7_dus8p")
+mesh_library = ExtResource("15_6eyif")
 cell_size = Vector3(1, 2, 1)
 cell_center_y = false
 data = {
 "cells": PackedInt32Array(0, 6, 0, 65524, 9, 0, 65516, 1, 0, 65523, 65528, 0, 0, 65531, 0, 18, 0, 0, 16, 6, 0, 15, 11, 0, 12, 15, 0, 9, 20, 0, 4, 24, 0, 65534, 26, 0, 65528, 26, 0, 65516, 24, 0, 65510, 21, 0, 65505, 16, 0, 65501, 10, 0, 65500, 4, 0, 65503, 65534, 0, 65506, 65528, 0, 65513, 65516, 0, 65519, 65515, 0, 65525, 65514, 0, 65531, 65514, 0, 1, 65515, 0, 7, 65517, 0, 12, 65520, 0, 17, 65524, 0, 19, 65530, 0, 22, 65534, 0, 21, 4, 0, 20, 10, 0, 17, 16, 0, 14, 20, 0, 9, 25, 0, 3, 29, 0, 65531, 30, 0, 65511, 26, 0, 65505, 21, 0, 65500, 15, 0, 65496, 8, 0, 65497, 65535, 0, 65501, 65529, 0, 65503, 65523, 0, 65515, 65511, 0, 65521, 65510, 0, 65528, 65510, 0, 65535, 65510, 0, 6, 65512, 0, 12, 65515, 0, 17, 65519, 0, 22, 65526, 0, 22, 65521, 0, 26, 65530, 0, 65500, 65518, 0, 65502, 65513, 0, 65503, 65506, 0, 65516, 30, 0, 65521, 34, 0, 65526, 38, 0, 65516, 35, 0, 65520, 40, 0, 65511, 32, 0, 65497, 65509, 0, 65509, 65506, 0, 65514, 65506, 0, 65511, 65501, 0, 65506, 65502, 0, 65499, 65503, 0, 65496, 65514, 0)
 }
 
-[node name="campfire" parent="NavigationRegion3D" instance=ExtResource("9_rgsqs")]
+[node name="campfire" parent="NavigationRegion3D" instance=ExtResource("16_b8f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.893, 2.166, -3.721)
 visible = false
 
@@ -567,13 +567,13 @@ light_color = Color(1, 0.462745, 0, 1)
 omni_range = 9.855
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/campfire"]
-stream = ExtResource("12_ko15c")
+stream = ExtResource("17_b06pn")
 volume_db = 23.063
 unit_size = 0.1
 autoplay = true
 max_distance = 20.0
 
-[node name="campfire2" parent="NavigationRegion3D" instance=ExtResource("9_rgsqs")]
+[node name="campfire2" parent="NavigationRegion3D" instance=ExtResource("16_b8f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.779, 3.126, -2.19)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/campfire2"]
@@ -581,14 +581,14 @@ light_color = Color(1, 0.462745, 0, 1)
 omni_range = 9.855
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/campfire2"]
-stream = ExtResource("12_ko15c")
+stream = ExtResource("17_b06pn")
 volume_db = 23.063
 unit_size = 0.1
 autoplay = true
 max_distance = 20.0
 
-[node name="low_poly_helicopter" parent="NavigationRegion3D" instance=ExtResource("12_02jqs")]
+[node name="low_poly_helicopter" parent="NavigationRegion3D" instance=ExtResource("18_1msqf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.52, 11.224, -2.558)
 
-[node name="spider lite " parent="NavigationRegion3D" instance=ExtResource("7_mp1bd")]
+[node name="spider lite " parent="NavigationRegion3D" instance=ExtResource("7_cagd0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3742, 0, 0)
