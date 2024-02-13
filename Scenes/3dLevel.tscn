@@ -539,6 +539,7 @@ volume_db = 18.286
 pitch_scale = 0.96
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310642, -2.71734, -0.181522)
 navigation_mesh = SubResource("NavigationMesh_rnex5")
 
 [node name="Ground" type="MeshInstance3D" parent="NavigationRegion3D"]
