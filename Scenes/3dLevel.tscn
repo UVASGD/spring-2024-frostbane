@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://r7svjojjwyyp"]
+[gd_scene load_steps=38 format=3 uid="uid://lx4y3jdjpndx"]
 
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
 [ext_resource type="Texture2D" uid="uid://bobf668bose78" path="res://Assets/Sky/nightsky.png" id="2_52qce"]
@@ -592,4 +592,4 @@ max_distance = 20.0
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.52, 11.224, -2.558)
 
 [node name="spider lite " parent="NavigationRegion3D" instance=ExtResource("7_cagd0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3742, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3742, 4.76452, 0)
