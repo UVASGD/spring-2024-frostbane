@@ -44,3 +44,9 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+var collectible_count = 0
+
+func pickup_collectible():
+	collectible_count += 1
+	$HUD.update_inventory(collectible_count)
