@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://lx4y3jdjpndx"]
+[gd_scene load_steps=40 format=3 uid="uid://r7svjojjwyyp"]
 
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
 [ext_resource type="Texture2D" uid="uid://bobf668bose78" path="res://Assets/Sky/nightsky.png" id="2_52qce"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cn0dqise77kw7" path="res://Music/wind-outside-sound-ambient-141989.mp3" id="8_m8l0l"]
 [ext_resource type="AudioStream" uid="uid://d1q0r14tv8b6v" path="res://Music/steps-on-snow-30305.mp3" id="9_8o253"]
 [ext_resource type="Texture2D" uid="uid://ddre5gdff480d" path="res://GroundTexture/TCom_Gore_512_albedo.jpg" id="10_tb1sr"]
+[ext_resource type="PackedScene" uid="uid://ewvf2lrp1cu1" path="res://Scenes/HUD.tscn" id="10_to67x"]
 [ext_resource type="Texture2D" uid="uid://daso0tpqi67we" path="res://GroundTexture/TCom_Gore_512_ao.jpg" id="11_vt40j"]
 [ext_resource type="Texture2D" uid="uid://buyo81ls834ca" path="res://GroundTexture/TCom_Gore_512_height.jpg" id="12_bjywo"]
 [ext_resource type="Texture2D" uid="uid://cw48ds2ci6nr0" path="res://GroundTexture/TCom_Gore_512_normal.jpg" id="13_lxavp"]
@@ -18,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://danr4a1nlo0f7" path="res://Assets/Campfire/campfire.tscn" id="16_b8f5f"]
 [ext_resource type="AudioStream" uid="uid://c0m3vtg2nosvh" path="res://Music/campfire-103566.mp3" id="17_b06pn"]
 [ext_resource type="PackedScene" uid="uid://ctsd6ssag23pv" path="res://Assets/Helicopter/low_poly_helicopter.glb" id="18_1msqf"]
+[ext_resource type="PackedScene" uid="uid://6yq0k2wiuwsj" path="res://Scenes/Collectibles/Collectible.tscn" id="19_756ww"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ch8lp"]
 panorama = ExtResource("2_52qce")
@@ -511,6 +513,8 @@ spot_angle = 30.0
 [node name="spider lite " parent="Player/Neck" instance=ExtResource("7_cagd0")]
 transform = Transform3D(1, 0, 0, 0, 0.109596, 0.993976, 0, -0.993976, 0.109596, 0.13708, -3.87455, -1.15181)
 visible = false
+collision_layer = 0
+collision_mask = 0
 script = null
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Player"]
@@ -537,6 +541,8 @@ volume_db = -14.739
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.495082, 0.254703, -0.278085)
 volume_db = 18.286
 pitch_scale = 0.96
+
+[node name="HUD" parent="Player" instance=ExtResource("10_to67x")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310642, -2.71734, -0.181522)
@@ -593,3 +599,20 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.52, 11.224, -2.558)
 
 [node name="spider lite " parent="NavigationRegion3D" instance=ExtResource("7_cagd0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3742, 4.76452, 0)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Collectible" parent="Node" instance=ExtResource("19_756ww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.41227, -2.59522)
+
+[node name="Collectible2" parent="Node" instance=ExtResource("19_756ww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2597, -1.41227, -3.43413)
+
+[node name="Collectible3" parent="Node" instance=ExtResource("19_756ww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7873, -1.41227, -8.41772)
+
+[node name="Collectible4" parent="Node" instance=ExtResource("19_756ww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38897, -1.41227, -12.4794)
+
+[node name="Collectible5" parent="Node" instance=ExtResource("19_756ww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.45546, -1.41227, -12.4794)
