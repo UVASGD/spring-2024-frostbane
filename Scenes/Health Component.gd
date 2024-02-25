@@ -18,5 +18,5 @@ func loseHealth(dHealth):
 		die()
 func die():
 	died.emit()
-	print("died")
-	queue_free()
+	
+	##queue_free()
