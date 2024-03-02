@@ -51,9 +51,9 @@ curve = SubResource("Curve_a7leb")
 emission_shape = 3
 emission_box_extents = Vector3(100, 0, 100)
 direction = Vector3(0, -1, 0)
+gravity = Vector3(0, -1, 0)
 initial_velocity_min = 4.0
 initial_velocity_max = 4.0
-gravity = Vector3(0, -1, 0)
 scale_min = 0.2
 scale_max = 0.2
 scale_curve = SubResource("CurveTexture_r2ul7")
@@ -568,6 +568,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70557, 1.55746, 5.05283)
 script = ExtResource("6_ueyud")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+visible = false
 mesh = SubResource("CapsuleMesh_e6h0p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
@@ -578,7 +579,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.626994, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0274956, -0.290297)
-visible = false
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck/Camera3D"]
 spot_range = 15.0
@@ -595,6 +595,13 @@ texture = ExtResource("7_r46xm")
 script = SubResource("GDScript_s1tva")
 maxOpacityPercentage = 0.5
 metadata/_edit_use_anchors_ = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/Neck/Camera3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 3, 0, 0, 0)
+target_position = Vector3(0, 0, -1)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="spider lite " parent="Player/Neck" instance=ExtResource("7_cagd0")]
 transform = Transform3D(1, 0, 0, 0, 0.109596, 0.993976, 0, -0.993976, 0.109596, 0.13708, -3.87455, -1.15181)
