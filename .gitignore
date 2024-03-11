@@ -16,3 +16,5 @@ mono_crash.*.json
 
 # MacOS files
 .DS_Store
+Assets/Foliage/foliageMesh.tres
+Assets/Tree/treeMesh.tres

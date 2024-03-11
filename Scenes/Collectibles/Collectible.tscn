@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://6yq0k2wiuwsj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vodg2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygwmw"]
+albedo_color = Color(0.513726, 0.788235, 0.396078, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g7lbn"]
+material = SubResource("StandardMaterial3D_ygwmw")
+
+[node name="Collectible" type="Area3D"]
+collision_layer = 2
+
+[node name="Outline" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vodg2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_g7lbn")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
