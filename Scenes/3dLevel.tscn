@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://lx4y3jdjpndx"]
+[gd_scene load_steps=53 format=3 uid="uid://lx4y3jdjpndx"]
 
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
 [ext_resource type="Texture2D" uid="uid://bobf668bose78" path="res://Assets/Sky/nightsky.png" id="2_52qce"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://ctsd6ssag23pv" path="res://Assets/Helicopter/low_poly_helicopter.glb" id="18_1msqf"]
 [ext_resource type="PackedScene" uid="uid://6yq0k2wiuwsj" path="res://Scenes/Collectibles/Collectible.tscn" id="19_756ww"]
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="19_x51nb"]
+[ext_resource type="Script" path="res://Scenes/CollectibleSpawner.gd" id="23_10lvv"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ch8lp"]
 panorama = ExtResource("2_52qce")
@@ -528,6 +529,7 @@ environment = SubResource("Environment_ruyhh")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.68342, 0)
 cast_shadow = 0
+emitting = false
 amount = 10000
 lifetime = 5.0
 randomness = 0.5
@@ -652,6 +654,7 @@ cell_center_y = false
 data = {
 "cells": PackedInt32Array(0, 6, 0, 65524, 9, 0, 65516, 1, 0, 65523, 65528, 0, 0, 65531, 0, 18, 0, 0, 16, 6, 0, 15, 11, 0, 12, 15, 0, 9, 20, 0, 4, 24, 0, 65534, 26, 0, 65528, 26, 0, 65516, 24, 0, 65510, 21, 0, 65505, 16, 0, 65501, 10, 0, 65500, 4, 0, 65503, 65534, 0, 65506, 65528, 0, 65513, 65516, 0, 65519, 65515, 0, 65525, 65514, 0, 65531, 65514, 0, 1, 65515, 0, 7, 65517, 0, 12, 65520, 0, 17, 65524, 0, 19, 65530, 0, 22, 65534, 0, 21, 4, 0, 20, 10, 0, 17, 16, 0, 14, 20, 0, 9, 25, 0, 3, 29, 0, 65531, 30, 0, 65511, 26, 0, 65505, 21, 0, 65500, 15, 0, 65496, 8, 0, 65497, 65535, 0, 65501, 65529, 0, 65503, 65523, 0, 65515, 65511, 0, 65521, 65510, 0, 65528, 65510, 0, 65535, 65510, 0, 6, 65512, 0, 12, 65515, 0, 17, 65519, 0, 22, 65526, 0, 22, 65521, 0, 26, 65530, 0, 65500, 65518, 0, 65502, 65513, 0, 65503, 65506, 0, 65516, 30, 0, 65521, 34, 0, 65526, 38, 0, 65516, 35, 0, 65520, 40, 0, 65511, 32, 0, 65497, 65509, 0, 65509, 65506, 0, 65514, 65506, 0, 65511, 65501, 0, 65506, 65502, 0, 65499, 65503, 0, 65496, 65514, 0)
 }
+metadata/_editor_floor_ = Vector3(0, 7, 0)
 
 [node name="campfire" parent="NavigationRegion3D" instance=ExtResource("16_b8f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.893, 2.166, -3.721)
@@ -703,21 +706,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_q5bl5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.451403, 0)
 shape = SubResource("ConcavePolygonShape3D_2wk3d")
 
-[node name="Node" type="Node" parent="."]
-
-[node name="Collectible" parent="Node" instance=ExtResource("19_756ww")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.41227, -2.59522)
-
-[node name="Collectible2" parent="Node" instance=ExtResource("19_756ww")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2597, -1.41227, -3.43413)
-
-[node name="Collectible3" parent="Node" instance=ExtResource("19_756ww")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7873, -1.41227, -8.41772)
-
-[node name="Collectible4" parent="Node" instance=ExtResource("19_756ww")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38897, -1.41227, -12.4794)
-
-[node name="Collectible5" parent="Node" instance=ExtResource("19_756ww")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.45546, -1.41227, -12.4794)
+[node name="CollectibleSpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.784325, 0)
+script = ExtResource("23_10lvv")
+collectible_scene = ExtResource("19_756ww")
 
 [connection signal="lostHp" from="Player/HealthCompoent" to="Player/Neck/Camera3D/TextureRect" method="_on_health_compoent_lost_hp"]
