@@ -66,7 +66,7 @@ func check_raycast():
 	if ray.is_colliding():
 		var col = ray.get_collider()
 		#Add distanceconditional so you can't pickup from 1000 meters away
-		if col.get_collision_layer() == COLLECTIBLE_COLLISION_LAYER:
+		if col and col.get_collision_layer() == COLLECTIBLE_COLLISION_LAYER:
 			focus_collectible(col)
 	else:
 		focus_collectible(null)
