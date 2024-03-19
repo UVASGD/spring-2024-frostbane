@@ -1,6 +1,7 @@
-[gd_scene load_steps=52 format=3 uid="uid://lx4y3jdjpndx"]
+[gd_scene load_steps=53 format=3 uid="uid://lx4y3jdjpndx"]
 
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
+[ext_resource type="Script" path="res://Scenes/LevelManager.gd" id="1_tofn6"]
 [ext_resource type="Texture2D" uid="uid://bobf668bose78" path="res://Assets/Sky/nightsky.png" id="2_52qce"]
 [ext_resource type="Script" path="res://cam_rig.gd" id="3_hfc0r"]
 [ext_resource type="AudioStream" uid="uid://gaybd4taxkmk" path="res://Music/scream-with-echo-46585.mp3" id="4_tjcao"]
@@ -511,6 +512,7 @@ data = PackedVector3Array(0, 5, 0, 0, 5, 0, 0, 4.9774, 4.7528, 0, 5, 0, 0.4659, 
 
 [node name="World" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.312267, 0)
+script = ExtResource("1_tofn6")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -527,6 +529,7 @@ environment = SubResource("Environment_ruyhh")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.68342, 0)
+visible = false
 cast_shadow = 0
 amount = 10000
 lifetime = 5.0
