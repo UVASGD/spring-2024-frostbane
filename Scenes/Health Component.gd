@@ -7,7 +7,7 @@ var health :int
 func _ready():
 	health = maxHealth
 
-func _process(delta):
+func _process(_delta):
 	if(Input.is_action_just_pressed("ui_home")):
 		loseHealth(1)
 
