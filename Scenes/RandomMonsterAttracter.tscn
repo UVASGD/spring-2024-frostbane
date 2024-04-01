@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cb3fn4f45qdsm"]
+
+[node name="RandomMonsterAttracter" type="Node3D"]
