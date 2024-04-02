@@ -12,7 +12,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var neck := $Neck
 @onready var camera := $Neck/Camera3D
-@onready var footsteps := $Footsteps
 @onready var ray = $'Neck/Camera3D/RayCast3D'
 
 func _unhandled_input(event):
@@ -67,7 +66,7 @@ func check_raycast():
 	if ray.is_colliding():
 		var col = ray.get_collider()
 		#Add distanceconditional so you can't pickup from 1000 meters away
-		if col.get_collision_layer() == COLLECTIBLE_COLLISION_LAYER:
+		if col and col.get_collision_layer() == COLLECTIBLE_COLLISION_LAYER:
 			focus_collectible(col)
 	else:
 		focus_collectible(null)
