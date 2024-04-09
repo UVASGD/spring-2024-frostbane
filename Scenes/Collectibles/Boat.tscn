@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://hkv5rslwv72c"]
+
+[ext_resource type="Script" path="res://Scenes/Boat.gd" id="1_x4w8n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_181ky"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqkvq"]
+albedo_color = Color(0.705882, 0.509804, 0.258824, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6sxy7"]
+material = SubResource("StandardMaterial3D_jqkvq")
+
+[node name="Boat" type="Area3D"]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0, 0)
+collision_layer = 4
+script = ExtResource("1_x4w8n")
+
+[node name="Outline" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_181ky")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_6sxy7")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
