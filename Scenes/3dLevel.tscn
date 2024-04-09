@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://lx4y3jdjpndx"]
+[gd_scene load_steps=59 format=3 uid="uid://lx4y3jdjpndx"]
 
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
 [ext_resource type="Script" path="res://Scenes/LevelManager.gd" id="1_tofn6"]
@@ -27,6 +27,7 @@
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="19_x51nb"]
 [ext_resource type="Script" path="res://Scenes/CollectibleSpawner.gd" id="23_10lvv"]
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="25_xqrda"]
+[ext_resource type="PackedScene" uid="uid://hkv5rslwv72c" path="res://Scenes/Collectibles/Boat.tscn" id="28_ikp8e"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ch8lp"]
 panorama = ExtResource("2_52qce")
@@ -59,9 +60,9 @@ curve = SubResource("Curve_a7leb")
 emission_shape = 3
 emission_box_extents = Vector3(100, 0, 100)
 direction = Vector3(0, -1, 0)
+gravity = Vector3(0, -1, 0)
 initial_velocity_min = 4.0
 initial_velocity_max = 4.0
-gravity = Vector3(0, -1, 0)
 scale_min = 0.2
 scale_max = 0.2
 scale_curve = SubResource("CurveTexture_r2ul7")
@@ -625,7 +626,7 @@ metadata/_edit_use_anchors_ = true
 [node name="RayCast3D" type="RayCast3D" parent="Player/Neck/Camera3D"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 3, 0, 0, 0)
 target_position = Vector3(0, 0, -1)
-collision_mask = 2
+collision_mask = 6
 collide_with_areas = true
 collide_with_bodies = false
 
@@ -732,6 +733,9 @@ data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.784325, 0)
 script = ExtResource("23_10lvv")
 collectible_scene = ExtResource("19_756ww")
+
+[node name="Boat" parent="." instance=ExtResource("28_ikp8e")]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0, 10.1182)
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("wE")]
 script = ExtResource("25_xqrda")
