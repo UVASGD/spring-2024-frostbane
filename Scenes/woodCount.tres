@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://clfjmyiyqunjw"]
+
+[ext_resource type="Script" path="res://Scenes/WoodCount.gd" id="1_yebp4"]
+
+[resource]
+script = ExtResource("1_yebp4")
+count = 0

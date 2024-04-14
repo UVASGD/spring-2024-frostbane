@@ -81,3 +81,9 @@ func pickup_collectible():
 func focus_collectible(collectible):
 	focused_collectible = collectible
 	$HUD.toggle_collectible_UI(collectible)
+
+
+func _on_health_compoent_died():
+	# die animation
+	get_tree().reload_current_scene()
+	pass # Replace with function body.

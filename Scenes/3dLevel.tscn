@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=54 format=3 uid="uid://lx4y3jdjpndx"]
-
+[gd_scene load_steps=57 format=3 uid="uid://lx4y3jdjpndx"]
 
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
 [ext_resource type="Script" path="res://Scenes/LevelManager.gd" id="1_tofn6"]
@@ -27,11 +25,9 @@
 [ext_resource type="PackedScene" uid="uid://ctsd6ssag23pv" path="res://Assets/Helicopter/low_poly_helicopter.glb" id="18_1msqf"]
 [ext_resource type="PackedScene" uid="uid://6yq0k2wiuwsj" path="res://Scenes/Collectibles/Collectible.tscn" id="19_756ww"]
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="19_x51nb"]
-
-[ext_resource type="Script" path="res://Scenes/GameManager.gd" id="25_xqrda"]
-
 [ext_resource type="Script" path="res://Scenes/CollectibleSpawner.gd" id="23_10lvv"]
-
+[ext_resource type="Script" path="res://Scenes/GameManager.gd" id="25_xqrda"]
+[ext_resource type="Resource" uid="uid://clfjmyiyqunjw" path="res://Scenes/woodCount.tres" id="28_nkukk"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ch8lp"]
 panorama = ExtResource("2_52qce")
@@ -50,8 +46,7 @@ fog_density = 0.05
 fog_sky_affect = 0.85
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
-volumetric_fog_emission = Color(1, 1, 1, 1)
-volumetric_fog_emission_energy = 0.05
+volumetric_fog_temporal_reprojection_amount = 0.75
 
 [sub_resource type="Curve" id="Curve_a7leb"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.38961, 0.989474), 0.0, 0.0, 0, 0, Vector2(0.720779, 0), 0.0, 0.0, 0, 0]
@@ -289,7 +284,7 @@ resource_name = "scene"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Camera3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -602,7 +597,7 @@ shape = 1
 material = ExtResource("7_wmqau")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck/Camera3D"]
-light_energy = 2.0
+light_color = Color(0.67451, 0.662745, 0, 1)
 light_volumetric_fog_energy = 0.0
 spot_range = 15.0
 spot_angle = 30.0
@@ -735,11 +730,18 @@ collectible_scene = ExtResource("19_756ww")
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("wE")]
 script = ExtResource("25_xqrda")
-totalTime = 30
-maxFog = 0.7
+startingTime = 5
+totalTime = 10
+startingFog = 0.1
+endingFog = 0.8
+startingEmission = 1.0
+endingEmission = 0.2
 wE = NodePath("../WorldEnvironment")
+woodCount = ExtResource("28_nkukk")
 
 [node name="Timer" type="Timer" parent="GameManager"]
 
+[connection signal="died" from="Player/HealthCompoent" to="Player" method="_on_health_compoent_died"]
+[connection signal="died" from="Player/HealthCompoent" to="GameManager" method="_on_health_compoent_died"]
 [connection signal="lostHp" from="Player/HealthCompoent" to="Player/Neck/Camera3D/TextureRect" method="_on_health_compoent_lost_hp"]
 [connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_timer_timeout"]
