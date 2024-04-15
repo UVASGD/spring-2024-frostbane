@@ -91,6 +91,12 @@ func focus_interactable(interactable):
 	focused_interactable = interactable
 	$HUD.toggle_interactable_UI(interactable)
 	
+
+func _on_health_compoent_died():
+	# die animation
+	get_tree().reload_current_scene()
+	pass # Replace with function body.
+
 func try_repair_boat():
 	if focused_interactable and focused_interactable.get_collision_layer() == BOAT_COLLISION_LAYER: 
 		if wood_count < 10:
@@ -99,4 +105,4 @@ func try_repair_boat():
 		focused_interactable.repair()
 		wood_count -= 10
 		$HUD.update_inventory(wood_count)
-		
+
