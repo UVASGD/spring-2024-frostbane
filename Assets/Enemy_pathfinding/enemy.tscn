@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://6w7mdsj8v2p6"]
+[gd_scene load_steps=6 format=3 uid="uid://6w7mdsj8v2p6"]
 
 [ext_resource type="Script" path="res://Assets/Enemy_pathfinding/enemy.gd" id="1_bx6wg"]
 
@@ -9,6 +9,9 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_egv1r")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bdqb7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rs5kg"]
+radius = 12.7147
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_bx6wg")
@@ -25,5 +28,21 @@ shape = SubResource("CapsuleShape3D_bdqb7")
 avoidance_enabled = true
 radius = 1.15
 
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.967374, 0)
+shape = SubResource("SphereShape3D_rs5kg")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49147, 0)
+collision_mask = 7
+
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_shape_entered" from="Area3D" to="." method="_on_area_3d_area_shape_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
