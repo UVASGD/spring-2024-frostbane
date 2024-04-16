@@ -18,7 +18,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var ray = $'Neck/Camera3D/RayCast3D'
 
 func _ready():
-	$HUD.update_inventory(wood_count)
+	$HUD.update_inventory(wood_count.count)
 
 func _unhandled_input(event):
 	check_raycast()
@@ -68,7 +68,7 @@ func _physics_process(delta):
 
 # Interactable Logic
 
-var wood_count = 10
+@export var wood_count: WoodCount 
 var focused_interactable = null
 
 func check_raycast():
@@ -84,8 +84,8 @@ func pickup_collectible():
 	if focused_interactable and focused_interactable.get_collision_layer() == COLLECTIBLE_COLLISION_LAYER: 
 		focused_interactable.queue_free()
 		focus_interactable(null)
-		wood_count += 1
-		$HUD.update_inventory(wood_count)
+		wood_count.count += 1
+		$HUD.update_inventory(wood_count.count)
 	
 func focus_interactable(interactable):
 	focused_interactable = interactable
@@ -99,10 +99,10 @@ func _on_health_compoent_died():
 
 func try_repair_boat():
 	if focused_interactable and focused_interactable.get_collision_layer() == BOAT_COLLISION_LAYER: 
-		if wood_count < 10:
+		if wood_count.count < 10:
 			$HUD.show_morewood_UI()
 			return;
 		focused_interactable.repair()
-		wood_count -= 10
-		$HUD.update_inventory(wood_count)
+		wood_count.count -= 10
+		$HUD.update_inventory(wood_count.counts)
 
