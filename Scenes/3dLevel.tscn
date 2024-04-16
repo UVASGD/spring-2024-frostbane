@@ -13,21 +13,22 @@
 [ext_resource type="AudioStream" uid="uid://cn0dqise77kw7" path="res://Music/wind-outside-sound-ambient-141989.mp3" id="8_m8l0l"]
 [ext_resource type="AudioStream" uid="uid://d1q0r14tv8b6v" path="res://Music/steps-on-snow-30305.mp3" id="9_8o253"]
 [ext_resource type="Script" path="res://Scenes/Health Component.gd" id="10_7ephw"]
-[ext_resource type="Texture2D" uid="uid://ddre5gdff480d" path="res://GroundTexture/TCom_Gore_512_albedo.jpg" id="10_tb1sr"]
 [ext_resource type="PackedScene" uid="uid://ewvf2lrp1cu1" path="res://Scenes/HUD.tscn" id="10_to67x"]
 [ext_resource type="Texture2D" uid="uid://daso0tpqi67we" path="res://GroundTexture/TCom_Gore_512_ao.jpg" id="11_vt40j"]
 [ext_resource type="Texture2D" uid="uid://buyo81ls834ca" path="res://GroundTexture/TCom_Gore_512_height.jpg" id="12_bjywo"]
-[ext_resource type="Texture2D" uid="uid://cw48ds2ci6nr0" path="res://GroundTexture/TCom_Gore_512_normal.jpg" id="13_lxavp"]
 [ext_resource type="Texture2D" uid="uid://c55jga0ongwi" path="res://GroundTexture/TCom_Gore_512_roughness.jpg" id="14_4b3og"]
 [ext_resource type="MeshLibrary" uid="uid://d08jo8pwlvem2" path="res://Assets/Tree/treeMesh.tres" id="15_6eyif"]
 [ext_resource type="PackedScene" uid="uid://danr4a1nlo0f7" path="res://Assets/Campfire/campfire.tscn" id="16_b8f5f"]
 [ext_resource type="AudioStream" uid="uid://c0m3vtg2nosvh" path="res://Music/campfire-103566.mp3" id="17_b06pn"]
 [ext_resource type="PackedScene" uid="uid://ctsd6ssag23pv" path="res://Assets/Helicopter/low_poly_helicopter.glb" id="18_1msqf"]
+[ext_resource type="Texture2D" uid="uid://dbr0dix7a5wlf" path="res://GroundTexture/Grass002_1K-JPG_Color.jpg" id="18_tra7v"]
 [ext_resource type="PackedScene" uid="uid://6yq0k2wiuwsj" path="res://Scenes/Collectibles/Collectible.tscn" id="19_756ww"]
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="19_x51nb"]
+[ext_resource type="Texture2D" uid="uid://di20wn0dm2fgh" path="res://GroundTexture/Grass002_1K-JPG_NormalGL.jpg" id="21_07fd7"]
 [ext_resource type="Script" path="res://Scenes/CollectibleSpawner.gd" id="23_10lvv"]
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="25_xqrda"]
 [ext_resource type="PackedScene" uid="uid://hkv5rslwv72c" path="res://Scenes/Collectibles/Boat.tscn" id="28_ikp8e"]
+
 [ext_resource type="Resource" uid="uid://clfjmyiyqunjw" path="res://Scenes/woodCount.tres" id="28_nkukk"]
 [ext_resource type="PackedScene" uid="uid://xolbo6lxvp1f" path="res://Assets/Models/Rock Type3 03.dae" id="29_robeq"]
 [ext_resource type="PackedScene" uid="uid://dmnk2lfsdwvyl" path="res://Assets/Models/Rock Type6 03.dae" id="30_f1ekq"]
@@ -442,11 +443,11 @@ agent_radius = 1.0
 agent_max_slope = 8.93
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ok1pn"]
-albedo_texture = ExtResource("10_tb1sr")
+albedo_texture = ExtResource("18_tra7v")
 metallic_specular = 0.16
 roughness_texture = ExtResource("14_4b3og")
 normal_enabled = true
-normal_texture = ExtResource("13_lxavp")
+normal_texture = ExtResource("21_07fd7")
 ao_enabled = true
 ao_texture = ExtResource("11_vt40j")
 heightmap_enabled = true
@@ -584,8 +585,9 @@ mesh_library = ExtResource("1_f3t52")
 cell_size = Vector3(0.5, 2, 0.5)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(15, 12, 0, 65528, 14, 0, 65521, 0, 0, 26, 4, 0, 10, 26, 0, 65516, 20, 0, 65509, 17, 0, 65499, 12, 0, 65504, 2, 0, 65512, 65525, 0, 65519, 65511, 0, 65512, 65514, 0, 5, 65512, 0, 14, 65517, 0, 7, 65520, 0, 36, 65518, 0, 34, 65526, 0, 25, 65514, 0, 43, 65532, 0, 65500, 21, 0, 65504, 65529, 0, 65520, 65512, 0, 14, 65510, 0)
+"cells": PackedInt32Array(15, 12, 0, 65528, 14, 0, 65521, 0, 0, 26, 4, 0, 10, 26, 0, 65516, 20, 0, 65509, 17, 0, 65499, 12, 0, 65504, 2, 0, 65512, 65525, 0, 65519, 65511, 0, 65512, 65514, 0, 5, 65512, 0, 14, 65517, 0, 7, 65520, 0, 36, 65518, 0, 34, 65526, 0, 25, 65514, 0, 43, 65532, 0, 65500, 21, 0, 65504, 65529, 0, 65520, 65512, 0, 14, 65510, 0, 3, 65486, 0, 65503, 65487, 0, 39, 65, 0, 65521, 60, 0, 6, 65470, 0, 62, 23, 0, 45, 65513, 0, 46, 65513, 0, 50, 33, 0, 29, 65485, 0, 65490, 65499, 0, 15, 51, 0, 65478, 65528, 0, 65483, 29, 0, 65487, 65535, 0, 65480, 11, 0, 65491, 65518, 0, 65498, 39, 0)
 }
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ruyhh")
