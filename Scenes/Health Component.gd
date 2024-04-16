@@ -8,7 +8,7 @@ func _ready():
 	health = maxHealth
 
 func _process(_delta):
-	if(Input.is_action_just_pressed("ui_home")):
+	if(Input.is_action_just_pressed("ui_text_indent")):
 		loseHealth(1)
 
 func loseHealth(dHealth):
