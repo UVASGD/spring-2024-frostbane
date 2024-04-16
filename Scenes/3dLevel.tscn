@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=71 format=3 uid="uid://lx4y3jdjpndx"]
-
+[gd_scene load_steps=72 format=3 uid="uid://lx4y3jdjpndx"]
 
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
 [ext_resource type="Script" path="res://Scenes/LevelManager.gd" id="1_tofn6"]
@@ -15,24 +13,22 @@
 [ext_resource type="AudioStream" uid="uid://cn0dqise77kw7" path="res://Music/wind-outside-sound-ambient-141989.mp3" id="8_m8l0l"]
 [ext_resource type="AudioStream" uid="uid://d1q0r14tv8b6v" path="res://Music/steps-on-snow-30305.mp3" id="9_8o253"]
 [ext_resource type="Script" path="res://Scenes/Health Component.gd" id="10_7ephw"]
-[ext_resource type="Texture2D" uid="uid://ddre5gdff480d" path="res://GroundTexture/TCom_Gore_512_albedo.jpg" id="10_tb1sr"]
 [ext_resource type="PackedScene" uid="uid://ewvf2lrp1cu1" path="res://Scenes/HUD.tscn" id="10_to67x"]
 [ext_resource type="Texture2D" uid="uid://daso0tpqi67we" path="res://GroundTexture/TCom_Gore_512_ao.jpg" id="11_vt40j"]
 [ext_resource type="Texture2D" uid="uid://buyo81ls834ca" path="res://GroundTexture/TCom_Gore_512_height.jpg" id="12_bjywo"]
-[ext_resource type="Texture2D" uid="uid://cw48ds2ci6nr0" path="res://GroundTexture/TCom_Gore_512_normal.jpg" id="13_lxavp"]
 [ext_resource type="Texture2D" uid="uid://c55jga0ongwi" path="res://GroundTexture/TCom_Gore_512_roughness.jpg" id="14_4b3og"]
 [ext_resource type="MeshLibrary" uid="uid://d08jo8pwlvem2" path="res://Assets/Tree/treeMesh.tres" id="15_6eyif"]
 [ext_resource type="PackedScene" uid="uid://danr4a1nlo0f7" path="res://Assets/Campfire/campfire.tscn" id="16_b8f5f"]
 [ext_resource type="AudioStream" uid="uid://c0m3vtg2nosvh" path="res://Music/campfire-103566.mp3" id="17_b06pn"]
 [ext_resource type="PackedScene" uid="uid://ctsd6ssag23pv" path="res://Assets/Helicopter/low_poly_helicopter.glb" id="18_1msqf"]
+[ext_resource type="Texture2D" uid="uid://dbr0dix7a5wlf" path="res://GroundTexture/Grass002_1K-JPG_Color.jpg" id="18_tra7v"]
 [ext_resource type="PackedScene" uid="uid://6yq0k2wiuwsj" path="res://Scenes/Collectibles/Collectible.tscn" id="19_756ww"]
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="19_x51nb"]
+[ext_resource type="Texture2D" uid="uid://di20wn0dm2fgh" path="res://GroundTexture/Grass002_1K-JPG_NormalGL.jpg" id="21_07fd7"]
 [ext_resource type="Script" path="res://Scenes/CollectibleSpawner.gd" id="23_10lvv"]
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="25_xqrda"]
-
-[ext_resource type="Resource" uid="uid://clfjmyiyqunjw" path="res://Scenes/woodCount.tres" id="28_nkukk"]
-
 [ext_resource type="PackedScene" path="res://Scenes/Collectibles/Boat.tscn" id="28_ikp8e"]
+[ext_resource type="Resource" uid="uid://clfjmyiyqunjw" path="res://Scenes/woodCount.tres" id="28_nkukk"]
 [ext_resource type="PackedScene" uid="uid://xolbo6lxvp1f" path="res://Assets/Models/Rock Type3 03.dae" id="29_robeq"]
 [ext_resource type="PackedScene" uid="uid://dmnk2lfsdwvyl" path="res://Assets/Models/Rock Type6 03.dae" id="30_f1ekq"]
 [ext_resource type="PackedScene" uid="uid://clgxqkev5jt84" path="res://Assets/Models/Rock Type5 03.dae" id="31_bq3gd"]
@@ -446,11 +442,11 @@ agent_radius = 1.0
 agent_max_slope = 8.93
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ok1pn"]
-albedo_texture = ExtResource("10_tb1sr")
+albedo_texture = ExtResource("18_tra7v")
 metallic_specular = 0.16
 roughness_texture = ExtResource("14_4b3og")
 normal_enabled = true
-normal_texture = ExtResource("13_lxavp")
+normal_texture = ExtResource("21_07fd7")
 ao_enabled = true
 ao_texture = ExtResource("11_vt40j")
 heightmap_enabled = true
@@ -808,10 +804,6 @@ woodCount = ExtResource("28_nkukk")
 
 [node name="Timer" type="Timer" parent="GameManager"]
 
-
-[connection signal="died" from="Player/HealthCompoent" to="Player" method="_on_health_compoent_died"]
-[connection signal="died" from="Player/HealthCompoent" to="GameManager" method="_on_health_compoent_died"]
-
 [node name="OuterRing" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.300079, -4.20702, 0)
 transparency = 1.0
@@ -983,5 +975,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.8906, -3.5519, -39.4475)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0727577)
 shape = SubResource("BoxShape3D_y1i3j")
 
+[connection signal="died" from="Player/HealthCompoent" to="Player" method="_on_health_compoent_died"]
+[connection signal="died" from="Player/HealthCompoent" to="GameManager" method="_on_health_compoent_died"]
 [connection signal="lostHp" from="Player/HealthCompoent" to="Player/Neck/Camera3D/TextureRect" method="_on_health_compoent_lost_hp"]
 [connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_timer_timeout"]
