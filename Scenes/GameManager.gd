@@ -47,5 +47,5 @@ func _on_timer_timeout():
 
 
 func _on_health_compoent_died():
-	woodCount.count -= 2
+	woodCount.count = max(woodCount.count - 2, 0)
 	pass
