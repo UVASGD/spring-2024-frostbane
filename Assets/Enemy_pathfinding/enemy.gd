@@ -1,8 +1,12 @@
 
 extends CharacterBody3D
+@onready var patrol_nav_agent: NavigationAgent3D = $NavigationAgent3D2
+@onready var Target = $"../Target"
+
 
 
 @onready var nav_agent = $NavigationAgent3D
+
 
 @onready var player: PhysicsBody3D = $"../Player"
 @onready var playerCheck: Node3D = $"../Player"
@@ -10,6 +14,7 @@ extends CharacterBody3D
 const PLAYER_COLLISION_LAYER = 7
 
 var SPEED = 5
+var accel = 5
 
 var inArea = false;
 
@@ -27,8 +32,23 @@ func _physics_process(delta):
 				var newVelocity = (next_location - current_location).normalized() * SPEED
 		
 				nav_agent.set_velocity(newVelocity)
-		else:
-			print("does this f-ing work")
+	else:
+		var direction = Vector3()
+	
+		patrol_nav_agent.target_position = Target.global_position
+
+		direction = patrol_nav_agent.get_next_path_position() - global_position
+		direction = direction.normalized()
+	
+		velocity = velocity.lerp(direction * SPEED , accel * delta)
+	
+		move_and_slide()
+		
+	
+			# place points
+			# there will be a list of points for the monster to got to
+			# at random the monsert will go a random point in that list
+			# once it reaches that point it will go to the next random point
 	
 	
 	

@@ -28,7 +28,6 @@
 [ext_resource type="Script" path="res://Scenes/CollectibleSpawner.gd" id="23_10lvv"]
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="25_xqrda"]
 [ext_resource type="PackedScene" uid="uid://hkv5rslwv72c" path="res://Scenes/Collectibles/Boat.tscn" id="28_ikp8e"]
-
 [ext_resource type="Resource" uid="uid://clfjmyiyqunjw" path="res://Scenes/woodCount.tres" id="28_nkukk"]
 [ext_resource type="PackedScene" uid="uid://xolbo6lxvp1f" path="res://Assets/Models/Rock Type3 03.dae" id="29_robeq"]
 [ext_resource type="PackedScene" uid="uid://dmnk2lfsdwvyl" path="res://Assets/Models/Rock Type6 03.dae" id="30_f1ekq"]
@@ -67,9 +66,9 @@ curve = SubResource("Curve_a7leb")
 emission_shape = 3
 emission_box_extents = Vector3(100, 0, 100)
 direction = Vector3(0, -1, 0)
-gravity = Vector3(0, -1, 0)
 initial_velocity_min = 4.0
 initial_velocity_max = 4.0
+gravity = Vector3(0, -1, 0)
 scale_min = 0.2
 scale_max = 0.2
 scale_curve = SubResource("CurveTexture_r2ul7")
@@ -542,9 +541,10 @@ roughness = 0.0960784
 [sub_resource type="ArrayMesh" id="ArrayMesh_npw0t"]
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0, 0, 0),
-"format": 0,
+"format": 34359738368,
 "name": "color1",
 "primitive": 5,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 0,
 "vertex_data": PackedByteArray()
 }]
@@ -554,10 +554,11 @@ blend_shape_mode = 0
 resource_name = "Rock Type2 02_mesh"
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0, 0, 0),
-"format": 0,
+"format": 34359738368,
 "material": SubResource("StandardMaterial3D_ud38h"),
 "name": "color1",
 "primitive": 5,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 0,
 "vertex_data": PackedByteArray()
 }]
