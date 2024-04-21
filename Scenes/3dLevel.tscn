@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://lx4y3jdjpndx"]
+[gd_scene load_steps=69 format=3 uid="uid://lx4y3jdjpndx"]
 
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
 [ext_resource type="Script" path="res://Scenes/LevelManager.gd" id="1_tofn6"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://buyo81ls834ca" path="res://GroundTexture/TCom_Gore_512_height.jpg" id="12_bjywo"]
 [ext_resource type="Texture2D" uid="uid://c55jga0ongwi" path="res://GroundTexture/TCom_Gore_512_roughness.jpg" id="14_4b3og"]
 [ext_resource type="MeshLibrary" uid="uid://d08jo8pwlvem2" path="res://Assets/Tree/treeMesh.tres" id="15_6eyif"]
-[ext_resource type="Script" path="res://Assets/Campfire/campfire.gd" id="15_sxnvb"]
 [ext_resource type="PackedScene" uid="uid://danr4a1nlo0f7" path="res://Assets/Campfire/campfire.tscn" id="16_b8f5f"]
 [ext_resource type="AudioStream" uid="uid://c0m3vtg2nosvh" path="res://Music/campfire-103566.mp3" id="17_b06pn"]
 [ext_resource type="PackedScene" uid="uid://ctsd6ssag23pv" path="res://Assets/Helicopter/low_poly_helicopter.glb" id="18_1msqf"]
@@ -109,6 +108,39 @@ tracks/0/keys = PackedFloat32Array(0.1, 1, 0, 0, 0, 1, 0.3, 1, 0, 0, 0, 1, 0.5, 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yyxq4"]
 _data = {
 "CameraTilt": SubResource("Animation_an35p")
+}
+
+[sub_resource type="Animation" id="Animation_sws3f"]
+resource_name = "PlayerGetUp"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/CanvasLayer/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4mgvp"]
+_data = {
+"PlayerGetUp": SubResource("Animation_sws3f")
 }
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rnex5"]
@@ -324,9 +356,20 @@ metadata/_edit_use_anchors_ = true
 [node name="RayCast3D" type="RayCast3D" parent="Player/Neck/Camera3D"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 3, 0, 0, 0)
 target_position = Vector3(0, 0, -1)
-collision_mask = 14
+collision_mask = 6
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Neck/Camera3D"]
+
+[node name="ColorRect" type="ColorRect" parent="Player/Neck/Camera3D/CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 
 [node name="spider lite " parent="Player/Neck" instance=ExtResource("7_cagd0")]
 transform = Transform3D(1, 0, 0, 0, 0.109596, 0.993976, 0, -0.993976, 0.109596, 0.13708, -3.87455, -1.15181)
@@ -367,20 +410,39 @@ script = ExtResource("10_7ephw")
 maxHealth = 10
 audioManager = NodePath("../../AudioManager")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_4mgvp")
+}
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310642, -2.71734, -0.181522)
 navigation_mesh = SubResource("NavigationMesh_rnex5")
 enabled = false
 
-[node name="Campfire" parent="NavigationRegion3D" instance=ExtResource("16_b8f5f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.84491, 3.08361, 13.5971)
-script = ExtResource("15_sxnvb")
+[node name="campfire" parent="NavigationRegion3D" instance=ExtResource("16_b8f5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.893, 2.166, -16.4669)
+visible = false
 
-[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Campfire"]
+[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/campfire"]
 light_color = Color(1, 0.462745, 0, 1)
 omni_range = 9.855
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/Campfire"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/campfire"]
+stream = ExtResource("17_b06pn")
+volume_db = 23.063
+unit_size = 0.1
+autoplay = true
+max_distance = 20.0
+
+[node name="campfire2" parent="NavigationRegion3D" instance=ExtResource("16_b8f5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.779, 3.126, 13.5844)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/campfire2"]
+light_color = Color(1, 0.462745, 0, 1)
+omni_range = 9.855
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/campfire2"]
 stream = ExtResource("17_b06pn")
 volume_db = 23.063
 unit_size = 0.1
@@ -415,17 +477,7 @@ data = {
 }
 
 [node name="CollectibleSpawner" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38799, 0.50583, 17.1503)
-script = ExtResource("23_10lvv")
-collectible_scene = ExtResource("19_756ww")
-
-[node name="CollectibleSpawner2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.61201, 0.50583, 14.1503)
-script = ExtResource("23_10lvv")
-collectible_scene = ExtResource("19_756ww")
-
-[node name="CollectibleSpawner3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61201, 0.50583, 8.15026)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.784325, 0)
 script = ExtResource("23_10lvv")
 collectible_scene = ExtResource("19_756ww")
 
@@ -623,5 +675,6 @@ script = ExtResource("36_kqcfg")
 stream = ExtResource("36_ebuur")
 
 [connection signal="died" from="Player/HealthCompoent" to="Player" method="_on_health_compoent_died"]
+[connection signal="died" from="Player/HealthCompoent" to="GameManager" method="_on_health_compoent_died"]
 [connection signal="lostHp" from="Player/HealthCompoent" to="Player/Neck/Camera3D/TextureRect" method="_on_health_compoent_lost_hp"]
 [connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_timer_timeout"]
