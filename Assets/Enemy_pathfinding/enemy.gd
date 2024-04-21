@@ -1,12 +1,9 @@
 
 extends CharacterBody3D
 @onready var patrol_nav_agent: NavigationAgent3D = $NavigationAgent3D2
-@onready var Target = $"../Target"
 
-
-
+@export var target_nodes: Array[Marker3D]
 @onready var nav_agent = $NavigationAgent3D
-
 
 @onready var player: PhysicsBody3D = $"../Player"
 @onready var playerCheck: Node3D = $"../Player"
@@ -17,6 +14,9 @@ var SPEED = 5
 var accel = 5
 
 var inArea = false;
+var canMove = true;
+var canShuffle = true;
+
 
 func _physics_process(delta):
 	if(inArea):	
@@ -25,7 +25,6 @@ func _physics_process(delta):
 		query.exclude = [self]
 		var results = space.intersect_ray(query)
 		if results:
-			print(results.collider.get_collision_layer())
 			if results.collider == player:				
 				var current_location = global_transform.origin
 				var next_location = nav_agent.get_next_path_position()
@@ -34,22 +33,37 @@ func _physics_process(delta):
 				nav_agent.set_velocity(newVelocity)
 	else:
 		var direction = Vector3()
-	
-		patrol_nav_agent.target_position = Target.global_position
+		var item = target_nodes[0]
+		if(canMove):
+			print(item)
+			patrol_nav_agent.target_position = item.global_position
 
-		direction = patrol_nav_agent.get_next_path_position() - global_position
-		direction = direction.normalized()
-	
-		velocity = velocity.lerp(direction * SPEED , accel * delta)
-	
-		move_and_slide()
+			direction = patrol_nav_agent.get_next_path_position() - global_position
+			direction = direction.normalized()
+			
 		
+			velocity = velocity.lerp(direction * SPEED , accel * delta)
+		
+			move_and_slide()
+
+		if global_position.distance_to(item.global_position) < 1.0:
+			
+			target_nodes.shuffle()
+			canMove = false;
+			await get_tree().create_timer(4).timeout
+			canMove = true;
+
+			var nextTarget = target_nodes[0]
+			print(nextTarget)
+			patrol_nav_agent.target_position = nextTarget.global_position
+
+			direction = patrol_nav_agent.get_next_path_position()- global_position
+			direction = direction.normalized()
 	
-			# place points
-			# there will be a list of points for the monster to got to
-			# at random the monsert will go a random point in that list
-			# once it reaches that point it will go to the next random point
+			velocity = velocity.lerp(direction * SPEED , accel * delta)
 	
+			move_and_slide()
+
 	
 	
 
