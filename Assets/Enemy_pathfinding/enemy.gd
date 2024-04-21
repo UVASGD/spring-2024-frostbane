@@ -7,6 +7,7 @@ extends CharacterBody3D
 
 @onready var player: PhysicsBody3D = $"../Player"
 @onready var playerCheck: Node3D = $"../Player"
+@export var audioManager : Node
 
 const PLAYER_COLLISION_LAYER = 7
 
@@ -19,7 +20,7 @@ var canShuffle = true;
 
 
 var canAttack = true;
-
+var soundPlayed : bool = false
 func _physics_process(delta):
 	if(inArea):	
 		var space = get_viewport().world_3d.direct_space_state
@@ -27,12 +28,15 @@ func _physics_process(delta):
 		query.exclude = [self]
 		var results = space.intersect_ray(query)
 		
+
 		if results:
 			if results.collider == player:				
 				var current_location = global_transform.origin
 				var next_location = nav_agent.get_next_path_position()
 				var newVelocity = (next_location - current_location).normalized() * SPEED
-
+				if (not soundPlayed): 
+					audioManager.playSFX(SFX.Growl)
+					soundPlayed = true
 				if(canAttack):
 					nav_agent.set_velocity(newVelocity)
 				else:
@@ -45,13 +49,15 @@ func _physics_process(delta):
 						await get_tree().create_timer(4).timeout
 						canAttack = true
 						nav_agent.set_velocity(newVelocity)
-		
+			else:
+				print("Reset Sound")
+				soundPlayed = false
 				
 	else:
 		var direction = Vector3()
 		var item = target_nodes[0]
 		if(canMove):
-			print(item)
+			#print(item)
 			patrol_nav_agent.target_position = item.global_position
 
 			direction = patrol_nav_agent.get_next_path_position() - global_position
