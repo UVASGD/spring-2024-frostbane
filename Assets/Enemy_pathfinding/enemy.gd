@@ -22,12 +22,16 @@ var canShuffle = true;
 var canAttack = true;
 var soundPlayed : bool = false
 func _physics_process(delta):
+	await get_tree().process_frame
 	if(inArea):	
 		var space = get_viewport().world_3d.direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(global_transform.origin, player.global_transform.origin)
 		query.exclude = [self]
 		var results = space.intersect_ray(query)
-		
+
+		if(!$AnimationPlayer.is_playing()):
+			$AnimationPlayer.speed_scale = 1
+			$AnimationPlayer.play("walkNLA")
 
 		if results:
 			if results.collider == player:				
@@ -44,20 +48,30 @@ func _physics_process(delta):
 				
 				if(nav_agent.distance_to_target() < 1.27 and canAttack):
 						playerCheck.get_node("HealthCompoent").loseHealth(1)
-						$AnimationPlayer.play("Attack")
+						$AnimationPlayer.speed_scale = 16
+						$AnimationPlayer.play("swipeNLA")
 						canAttack = false
 						await get_tree().create_timer(4).timeout
 						canAttack = true
 						nav_agent.set_velocity(newVelocity)
+						$AnimationPlayer.speed_scale = 1
 			else:
 				print("Reset Sound")
 				soundPlayed = false
+				$AnimationPlayer.play("idleNLA")
+						
+
+				
+
 				
 	else:
 		var direction = Vector3()
 		var item = target_nodes[0]
 		if(canMove):
-			#print(item)
+
+			$AnimationPlayer.play("walkNLA")
+
+
 			patrol_nav_agent.target_position = item.global_position
 
 			direction = patrol_nav_agent.get_next_path_position() - global_position
@@ -72,6 +86,7 @@ func _physics_process(delta):
 			
 			target_nodes.shuffle()
 			canMove = false;
+			$AnimationPlayer.play("idleNLA")
 			await get_tree().create_timer(4).timeout
 			canMove = true;
 
