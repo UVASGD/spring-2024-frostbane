@@ -38,15 +38,15 @@ func _physics_process(delta):
 				else:
 					nav_agent.set_velocity(Vector3(0, 0, 0))
 				
-		if(nav_agent.distance_to_target() < 1.27 and canAttack):
-				playerCheck.get_node("HealthCompoent").loseHealth(1)
-				$AnimationPlayer.play("Attack")
-				canAttack = false
-				await get_tree().create_timer(4).timeout
-				canAttack = true
-
+				if(nav_agent.distance_to_target() < 1.27 and canAttack):
+						playerCheck.get_node("HealthCompoent").loseHealth(1)
+						$AnimationPlayer.play("Attack")
+						canAttack = false
+						await get_tree().create_timer(4).timeout
+						canAttack = true
+						nav_agent.set_velocity(newVelocity)
 		
-				nav_agent.set_velocity(newVelocity)
+				
 	else:
 		var direction = Vector3()
 		var item = target_nodes[0]
