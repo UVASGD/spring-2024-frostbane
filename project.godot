@@ -12,7 +12,7 @@ config_version=5
 
 config/name="HorrorWinter"
 run/main_scene="res://Scenes/3dTest-nomushrooms.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 <<<<<<<HEADrun/main_scene="res://Scenes/3dTest.tscn"
 
 [autoload]
