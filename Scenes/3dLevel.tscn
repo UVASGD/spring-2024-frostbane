@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://di20wn0dm2fgh" path="res://GroundTexture/Grass002_1K-JPG_NormalGL.jpg" id="21_07fd7"]
 [ext_resource type="Script" path="res://Scenes/CollectibleSpawner.gd" id="23_10lvv"]
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="25_xqrda"]
-[ext_resource type="PackedScene" path="res://Scenes/Collectibles/Boat.tscn" id="28_ikp8e"]
+[ext_resource type="PackedScene" uid="uid://hkv5rslwv72c" path="res://Scenes/Collectibles/Boat.tscn" id="28_ikp8e"]
 [ext_resource type="Resource" uid="uid://clfjmyiyqunjw" path="res://Scenes/woodCount.tres" id="28_nkukk"]
 [ext_resource type="PackedScene" uid="uid://xolbo6lxvp1f" path="res://Assets/Models/Rock Type3 03.dae" id="29_robeq"]
 [ext_resource type="PackedScene" uid="uid://dmnk2lfsdwvyl" path="res://Assets/Models/Rock Type6 03.dae" id="30_f1ekq"]
