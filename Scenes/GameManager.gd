@@ -43,9 +43,3 @@ func _on_timer_timeout():
 		wE.environment.volumetric_fog_emission_energy = v
 		print("Density: " + str(float(curTime)/totalTime * (endingFog - startingFog) + startingFog) + " Emmision: " + str(v) + " Energy: "+ str(startingEmission - v))
 		curTime+=1
-
-
-
-func _on_health_compoent_died():
-	woodCount.count = max(woodCount.count - 2, 0)
-	pass
