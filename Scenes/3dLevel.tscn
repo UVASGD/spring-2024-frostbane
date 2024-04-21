@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://lx4y3jdjpndx"]
+[gd_scene load_steps=74 format=3 uid="uid://lx4y3jdjpndx"]
 
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
 [ext_resource type="Script" path="res://Scenes/LevelManager.gd" id="1_tofn6"]
@@ -28,7 +28,6 @@
 [ext_resource type="Script" path="res://Scenes/CollectibleSpawner.gd" id="23_10lvv"]
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="25_xqrda"]
 [ext_resource type="PackedScene" uid="uid://hkv5rslwv72c" path="res://Scenes/Collectibles/Boat.tscn" id="28_ikp8e"]
-
 [ext_resource type="Resource" uid="uid://clfjmyiyqunjw" path="res://Scenes/woodCount.tres" id="28_nkukk"]
 [ext_resource type="PackedScene" uid="uid://xolbo6lxvp1f" path="res://Assets/Models/Rock Type3 03.dae" id="29_robeq"]
 [ext_resource type="PackedScene" uid="uid://dmnk2lfsdwvyl" path="res://Assets/Models/Rock Type6 03.dae" id="30_f1ekq"]
@@ -36,6 +35,8 @@
 [ext_resource type="PackedScene" uid="uid://dedp0hqwkobeb" path="res://Assets/Models/Rock Type1 02.dae" id="32_qm6xr"]
 [ext_resource type="PackedScene" uid="uid://qs27ua5wsso7" path="res://Assets/Models/Rock Type3 02.dae" id="33_k4go6"]
 [ext_resource type="PackedScene" uid="uid://bdkwhtmpribsw" path="res://Assets/Models/Rock Type1 04.dae" id="34_3syff"]
+[ext_resource type="AudioStream" uid="uid://1gfka8omerha" path="res://SFX/hit.mp3" id="36_ebuur"]
+[ext_resource type="Script" path="res://Scenes/AudioManager.gd" id="36_kqcfg"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ch8lp"]
 panorama = ExtResource("2_52qce")
@@ -714,9 +715,10 @@ pitch_scale = 0.96
 
 [node name="HUD" parent="Player" instance=ExtResource("10_to67x")]
 
-[node name="HealthCompoent" type="Node" parent="Player"]
+[node name="HealthCompoent" type="Node" parent="Player" node_paths=PackedStringArray("audioManager")]
 script = ExtResource("10_7ephw")
 maxHealth = 10
+audioManager = NodePath("../../AudioManager")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310642, -2.71734, -0.181522)
@@ -799,6 +801,12 @@ wE = NodePath("../WorldEnvironment")
 woodCount = ExtResource("28_nkukk")
 
 [node name="Timer" type="Timer" parent="GameManager"]
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("36_kqcfg")
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("36_ebuur")
 
 [node name="OuterRing" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.300079, -4.20702, 0)
