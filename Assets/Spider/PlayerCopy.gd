@@ -8,6 +8,7 @@ const PLAYER_COLLISION_LAYER = 1
 const COLLECTIBLE_COLLISION_LAYER = 2
 #Boat layer is 4 not 3 because: https://www.reddit.com/r/godot/comments/18n88zn/raycast3dget_colliderget_collision_layer/
 const BOAT_COLLISION_LAYER = 4
+const CAMPFIRE_COLLISION_LAYER = 8
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -16,9 +17,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var neck := $Neck
 @onready var camera := $Neck/Camera3D
 @onready var ray = $'Neck/Camera3D/RayCast3D'
+@onready var animationPlayer = $AnimationPlayer
 
 func _ready():
 	$HUD.update_inventory(wood_count.count)
+	animationPlayer.play("PlayerGetUp") 
+	
 
 func _unhandled_input(event):
 	check_raycast()
@@ -39,6 +43,8 @@ func _unhandled_input(event):
 					pickup_collectible()
 				elif focused_interactable.get_collision_layer() == BOAT_COLLISION_LAYER:
 					try_repair_boat()
+				elif focused_interactable.get_collision_layer() == CAMPFIRE_COLLISION_LAYER:
+					try_feed_campfire()
 		
 
 func _physics_process(delta):
@@ -94,8 +100,9 @@ func focus_interactable(interactable):
 
 func _on_health_compoent_died():
 	# die animation
+	wood_count.count = 0
 	get_tree().reload_current_scene()
-	pass # Replace with function body.
+
 
 func try_repair_boat():
 	if focused_interactable and focused_interactable.get_collision_layer() == BOAT_COLLISION_LAYER: 
@@ -105,4 +112,13 @@ func try_repair_boat():
 		focused_interactable.repair()
 		wood_count.count -= 10
 		$HUD.update_inventory(wood_count.counts)
+		
+func try_feed_campfire():
+	if focused_interactable and focused_interactable.get_collision_layer() == CAMPFIRE_COLLISION_LAYER: 
+		if wood_count.count < 2:
+			$HUD.show_morewood_UI()
+			return;
+		wood_count.count = max(wood_count.count - 2, 0)
+		$HUD.update_inventory(wood_count.count)
+		get_tree().reload_current_scene()
 

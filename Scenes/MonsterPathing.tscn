@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://8126rfo3webg"]
+[gd_scene load_steps=18 format=3 uid="uid://8126rfo3webg"]
 
 [ext_resource type="Script" path="res://Assets/Spider/PlayerCopy.gd" id="1_8gg03"]
 [ext_resource type="Script" path="res://Scenes/MonsterPathing.gd" id="1_uc0s6"]
 [ext_resource type="Texture2D" uid="uid://cwb46w0c3qc7" path="res://Assets/Campfire/campfire_bark_burned.png" id="2_4ly6h"]
+[ext_resource type="Resource" uid="uid://clfjmyiyqunjw" path="res://Scenes/woodCount.tres" id="3_griqc"]
 [ext_resource type="PackedScene" uid="uid://ewvf2lrp1cu1" path="res://Scenes/HUD.tscn" id="6_v4ngl"]
 [ext_resource type="PackedScene" uid="uid://6w7mdsj8v2p6" path="res://Assets/Enemy_pathfinding/enemy.tscn" id="6_y8gpn"]
 [ext_resource type="Script" path="res://Scenes/Health Component.gd" id="7_jqgcm"]
@@ -45,6 +46,7 @@ script = ExtResource("1_uc0s6")
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71511, 1.51674, 15.6014)
 script = ExtResource("1_8gg03")
+wood_count = ExtResource("3_griqc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_hw5ir")
@@ -124,7 +126,19 @@ mesh = SubResource("BoxMesh_8smmo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D3/StaticBody3D"]
 shape = SubResource("BoxShape3D_27der")
 
-[node name="Enemy" parent="." instance=ExtResource("6_y8gpn")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("target_nodes") instance=ExtResource("6_y8gpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00345993, 9.53674e-07, -14.7893)
+target_nodes = [NodePath("../Target"), NodePath("../Target 2"), NodePath("../Target 3")]
+
+[node name="NavigationAgent3D2" type="NavigationAgent3D" parent="Enemy"]
+
+[node name="Target" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.99654, 9.53674e-07, -8.7893)
+
+[node name="Target 2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99654, 9.53674e-07, 25.2107)
+
+[node name="Target 3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.99654, 9.53674e-07, 6.2107)
 
 [connection signal="lostHp" from="Player/HealthCompoent" to="Player/Neck/Camera3D/TextureRect" method="_on_health_compoent_lost_hp"]
