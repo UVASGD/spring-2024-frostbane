@@ -1,12 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://6yq0k2wiuwsj"]
+[gd_scene load_steps=7 format=3 uid="uid://6yq0k2wiuwsj"]
+
+[ext_resource type="Texture2D" path="res://GroundTexture/Bark08_6K_BaseColor.png" id="1_n8i6i"]
+[ext_resource type="Texture2D" uid="uid://ydxw5gtw5tf" path="res://GroundTexture/Ground051_1K-JPG_Color.jpg" id="2_mb6x3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vodg2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygwmw"]
-albedo_color = Color(0.513726, 0.788235, 0.396078, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ewq6j"]
+albedo_texture = ExtResource("1_n8i6i")
 
-[sub_resource type="BoxMesh" id="BoxMesh_g7lbn"]
-material = SubResource("StandardMaterial3D_ygwmw")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4ssg"]
+albedo_texture = ExtResource("2_mb6x3")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wsssx"]
+material = SubResource("StandardMaterial3D_j4ssg")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.5
 
 [node name="Collectible" type="Area3D"]
 collision_layer = 2
@@ -15,7 +24,9 @@ collision_layer = 2
 shape = SubResource("BoxShape3D_vodg2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_g7lbn")
+transform = Transform3D(-0.00570716, 0.999984, 0, -0.999984, -0.00570716, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ewq6j")
+mesh = SubResource("CylinderMesh_wsssx")
 
 [connection signal="body_entered" from="." to="." method="on_body_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
