@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dv11vk4re5s1y"]
+
+[resource]
+resource_name = "ReggiRemi"
+cull_mode = 2
+albedo_color = Color(0.926, 0.530044, 0.132208, 1)
+roughness = 0.0764706

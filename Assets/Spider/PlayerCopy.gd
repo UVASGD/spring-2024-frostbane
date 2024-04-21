@@ -111,7 +111,7 @@ func try_repair_boat():
 			return;
 		focused_interactable.repair()
 		wood_count.count -= 10
-		$HUD.update_inventory(wood_count.counts)
+		$HUD.update_inventory(wood_count.count)
 		get_tree().change_scene_to_file("res://Scenes/Victory.tscn")
 		get_tree().unload_current_scene()
 		
