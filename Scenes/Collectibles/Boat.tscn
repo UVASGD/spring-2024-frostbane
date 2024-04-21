@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://hkv5rslwv72c"]
+[gd_scene load_steps=6 format=3 uid="uid://hkv5rslwv72c"]
 
 [ext_resource type="Script" path="res://Scenes/Boat.gd" id="1_x4w8n"]
+[ext_resource type="PackedScene" uid="uid://bwvsnk8yvmmuk" path="res://Assets/66-boatmodel/boat.glb" id="2_7bkck"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_181ky"]
 
@@ -15,8 +16,16 @@ transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0, 
 collision_layer = 4
 script = ExtResource("1_x4w8n")
 
+[node name="boat" parent="." instance=ExtResource("2_7bkck")]
+transform = Transform3D(0.395, 0, 0, 0, -1.7266e-08, -0.395, 0, 0.395, -1.7266e-08, 0, -0.21, 0)
+
 [node name="Outline" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_181ky")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_6sxy7")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

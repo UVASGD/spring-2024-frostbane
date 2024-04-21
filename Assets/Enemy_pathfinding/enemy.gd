@@ -11,7 +11,7 @@ extends CharacterBody3D
 
 const PLAYER_COLLISION_LAYER = 7
 
-var SPEED = 5
+var SPEED = 4.5
 var accel = 5
 
 var inArea = false;

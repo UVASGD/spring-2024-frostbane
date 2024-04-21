@@ -40,6 +40,7 @@ text = "Press [E] to pick up wood"
 horizontal_alignment = 1
 
 [node name="MoreWoodUI" type="Label" parent="."]
+visible = false
 modulate = Color(0.278431, 0.6, 0.85098, 1)
 layout_mode = 1
 anchors_preset = 7
@@ -58,6 +59,7 @@ text = "Need More Wood"
 horizontal_alignment = 1
 
 [node name="BoatUI" type="Label" parent="."]
+visible = false
 modulate = Color(0.278431, 0.6, 0.85098, 1)
 layout_mode = 1
 anchors_preset = 7
@@ -76,6 +78,7 @@ text = "Press [E] to repair boat for 10 wood"
 horizontal_alignment = 1
 
 [node name="CampfireUI" type="Label" parent="."]
+visible = false
 modulate = Color(0.278431, 0.6, 0.85098, 1)
 layout_mode = 1
 anchors_preset = 7

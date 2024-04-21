@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://6yq0k2wiuwsj"]
+[gd_scene load_steps=5 format=3 uid="uid://6yq0k2wiuwsj"]
+
+[ext_resource type="PackedScene" uid="uid://cs8a7jco2jhc6" path="res://Assets/6s3hqe2d6rr4-Wood/DAE/untitled.dae" id="1_cshrj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vodg2"]
 
@@ -15,7 +17,11 @@ collision_layer = 2
 shape = SubResource("BoxShape3D_vodg2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_g7lbn")
+
+[node name="untitled" parent="." instance=ExtResource("1_cshrj")]
+transform = Transform3D(0.165, 0, 0, 0, 0.165, 0, 0, 0, 0.165, 0.105, -0.255, 0)
 
 [connection signal="body_entered" from="." to="." method="on_body_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
