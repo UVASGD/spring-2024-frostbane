@@ -13,11 +13,12 @@ func _process(_delta):
 		loseHealth(1)
 
 func loseHealth(dHealth):
-	audioManager.playSFX(SFX.Hit)
+	
 	health -= dHealth
 	lostHp.emit(float(health) / maxHealth)
 	if(health <= 0):
 		die()
+	audioManager.playSFX(SFX.Hit)
 func die():
 	died.emit()
 	
