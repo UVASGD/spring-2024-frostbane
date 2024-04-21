@@ -18,17 +18,33 @@ var canMove = true;
 var canShuffle = true;
 
 
+var canAttack = true;
+
 func _physics_process(delta):
 	if(inArea):	
 		var space = get_viewport().world_3d.direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(global_transform.origin, player.global_transform.origin)
 		query.exclude = [self]
 		var results = space.intersect_ray(query)
+		
 		if results:
 			if results.collider == player:				
 				var current_location = global_transform.origin
 				var next_location = nav_agent.get_next_path_position()
 				var newVelocity = (next_location - current_location).normalized() * SPEED
+
+				if(canAttack):
+					nav_agent.set_velocity(newVelocity)
+				else:
+					nav_agent.set_velocity(Vector3(0, 0, 0))
+				
+		if(nav_agent.distance_to_target() < 1.27 and canAttack):
+				playerCheck.get_node("HealthCompoent").loseHealth(1)
+				$AnimationPlayer.play("Attack")
+				canAttack = false
+				await get_tree().create_timer(4).timeout
+				canAttack = true
+
 		
 				nav_agent.set_velocity(newVelocity)
 	else:
@@ -63,6 +79,7 @@ func _physics_process(delta):
 			velocity = velocity.lerp(direction * SPEED , accel * delta)
 	
 			move_and_slide()
+
 
 	
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://6w7mdsj8v2p6"]
+[gd_scene load_steps=8 format=3 uid="uid://6w7mdsj8v2p6"]
 
 [ext_resource type="Script" path="res://Assets/Enemy_pathfinding/enemy.gd" id="1_bx6wg"]
 
@@ -12,6 +12,23 @@ material = SubResource("StandardMaterial3D_egv1r")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rs5kg"]
 radius = 12.7147
+
+[sub_resource type="Animation" id="Animation_ab41r"]
+resource_name = "Attack"
+length = 4.0
+step = 0.0535
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 2.033, 1, 0, 0, -0.789813, 0.613348, 3.9055, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dfjlk"]
+_data = {
+"Attack": SubResource("Animation_ab41r")
+}
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_bx6wg")
@@ -40,7 +57,11 @@ shape = SubResource("SphereShape3D_rs5kg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49147, 0)
 collision_mask = 7
 
-[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dfjlk")
+}
+
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_shape_entered" from="Area3D" to="." method="_on_area_3d_area_shape_entered"]
