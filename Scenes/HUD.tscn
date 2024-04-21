@@ -13,6 +13,7 @@ mouse_filter = 1
 script = ExtResource("1_ixuw2")
 
 [node name="Inventory" type="Label" parent="."]
+modulate = Color(0.278431, 0.6, 0.85098, 1)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
@@ -21,6 +22,7 @@ horizontal_alignment = 1
 
 [node name="CollectibleUI" type="Label" parent="."]
 visible = false
+modulate = Color(0.278431, 0.6, 0.85098, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -38,7 +40,7 @@ text = "Press [E] to pick up wood"
 horizontal_alignment = 1
 
 [node name="MoreWoodUI" type="Label" parent="."]
-visible = false
+modulate = Color(0.278431, 0.6, 0.85098, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -56,7 +58,7 @@ text = "Need More Wood"
 horizontal_alignment = 1
 
 [node name="BoatUI" type="Label" parent="."]
-visible = false
+modulate = Color(0.278431, 0.6, 0.85098, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -71,4 +73,22 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 11
 text = "Press [E] to repair boat for 10 wood"
+horizontal_alignment = 1
+
+[node name="CampfireUI" type="Label" parent="."]
+modulate = Color(0.278431, 0.6, 0.85098, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -33.0
+offset_right = 97.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 11
+text = "Press [E] to feed the fire for 2 wood"
 horizontal_alignment = 1
