@@ -23,9 +23,9 @@ func _ready():
 		queue_free()
 	wE.environment.volumetric_fog_density = startingFog
 	wE.environment.volumetric_fog_emission = Color.from_hsv(0,0,startingEmission)
-	print("prepause")
+	#print("prepause")
 	await get_tree().create_timer(startingTime).timeout
-	print("postpause")
+	#print("postpause")
 	timer.start()
 
 
@@ -41,11 +41,5 @@ func _on_timer_timeout():
 		var v:float = float(curTime)/totalTime * (endingEmission - startingEmission) + startingEmission
 		wE.environment.volumetric_fog_emission = Color.from_hsv(0,0,v)
 		wE.environment.volumetric_fog_emission_energy = v
-		print("Density: " + str(float(curTime)/totalTime * (endingFog - startingFog) + startingFog) + " Emmision: " + str(v) + " Energy: "+ str(startingEmission - v))
+		#print("Density: " + str(float(curTime)/totalTime * (endingFog - startingFog) + startingFog) + " Emmision: " + str(v) + " Energy: "+ str(startingEmission - v))
 		curTime+=1
-
-
-
-func _on_health_compoent_died():
-	woodCount.count = max(woodCount.count - 2, 0)
-	pass

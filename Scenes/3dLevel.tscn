@@ -1,4 +1,6 @@
-[gd_scene load_steps=68 format=3 uid="uid://lx4y3jdjpndx"]
+
+[gd_scene load_steps=69 format=3 uid="uid://lx4y3jdjpndx"]
+
 
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
 [ext_resource type="Script" path="res://Scenes/LevelManager.gd" id="1_tofn6"]
@@ -66,9 +68,9 @@ curve = SubResource("Curve_a7leb")
 emission_shape = 3
 emission_box_extents = Vector3(100, 0, 100)
 direction = Vector3(0, -1, 0)
-gravity = Vector3(0, -1, 0)
 initial_velocity_min = 4.0
 initial_velocity_max = 4.0
+gravity = Vector3(0, -1, 0)
 scale_min = 0.2
 scale_max = 0.2
 scale_curve = SubResource("CurveTexture_r2ul7")
@@ -109,6 +111,39 @@ tracks/0/keys = PackedFloat32Array(0.1, 1, 0, 0, 0, 1, 0.3, 1, 0, 0, 0, 1, 0.5, 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yyxq4"]
 _data = {
 "CameraTilt": SubResource("Animation_an35p")
+}
+
+[sub_resource type="Animation" id="Animation_sws3f"]
+resource_name = "PlayerGetUp"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/CanvasLayer/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4mgvp"]
+_data = {
+"PlayerGetUp": SubResource("Animation_sws3f")
 }
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rnex5"]
@@ -217,9 +252,10 @@ roughness = 0.0960784
 [sub_resource type="ArrayMesh" id="ArrayMesh_npw0t"]
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0, 0, 0),
-"format": 0,
+"format": 34359738368,
 "name": "color1",
 "primitive": 5,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 0,
 "vertex_data": PackedByteArray()
 }]
@@ -229,10 +265,11 @@ blend_shape_mode = 0
 resource_name = "Rock Type2 02_mesh"
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0, 0, 0),
-"format": 0,
+"format": 34359738368,
 "material": SubResource("StandardMaterial3D_ud38h"),
 "name": "color1",
 "primitive": 5,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 0,
 "vertex_data": PackedByteArray()
 }]
@@ -328,6 +365,17 @@ collision_mask = 6
 collide_with_areas = true
 collide_with_bodies = false
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Neck/Camera3D"]
+
+[node name="ColorRect" type="ColorRect" parent="Player/Neck/Camera3D/CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
 [node name="spider lite " parent="Player/Neck" instance=ExtResource("7_cagd0")]
 transform = Transform3D(1, 0, 0, 0, 0.109596, 0.993976, 0, -0.993976, 0.109596, 0.13708, -3.87455, -1.15181)
 visible = false
@@ -366,6 +414,11 @@ pitch_scale = 0.96
 script = ExtResource("10_7ephw")
 maxHealth = 10
 audioManager = NodePath("../../AudioManager")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_4mgvp")
+}
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310642, -2.71734, -0.181522)
