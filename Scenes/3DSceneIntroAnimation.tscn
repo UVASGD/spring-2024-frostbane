@@ -29,6 +29,7 @@ sky_material = SubResource("PanoramaSkyMaterial_ch8lp")
 [sub_resource type="Environment" id="Environment_ruyhh"]
 background_mode = 2
 sky = SubResource("Sky_ss3j2")
+ambient_light_color = Color(0, 0.823529, 0.611765, 1)
 tonemap_mode = 2
 glow_enabled = true
 fog_enabled = true
@@ -146,68 +147,68 @@ resource_name = "scene"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("Camera3D:position")
+tracks/0/enabled = true
+tracks/0/path = NodePath("cam_rig/Camera3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 3.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(2.426, 8.555, 11.586)]
+"values": [Vector3(1.129, 8.281, 10.285), Vector3(-2.796, 1.766, 0.18)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("cam_rig/Camera3D:position")
+tracks/1/path = NodePath("cam_rig/Camera3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 3.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(1.129, 8.281, 10.285), Vector3(-2.796, 1.766, 0.18)]
+"values": [Vector3(0.0349066, 0, 0), Vector3(0.296706, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("cam_rig/Camera3D:rotation")
+tracks/2/path = NodePath("NavigationRegion3D/low_poly_helicopter:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 3.4),
+"times": PackedFloat32Array(0, 2.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.0349066, 0, 0), Vector3(0.296706, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.855211, -3.26377, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("NavigationRegion3D/low_poly_helicopter:rotation")
+tracks/3/path = NodePath("NavigationRegion3D/low_poly_helicopter:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 2.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.855211, -3.26377, 0)]
+"values": [Vector3(18.52, 11.224, -2.558), Vector3(-2.7, 2.329, -2.558)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("NavigationRegion3D/low_poly_helicopter:position")
+tracks/4/path = NodePath("NavigationRegion3D/campfire:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.9),
+"times": PackedFloat32Array(0, 3.3),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(18.52, 11.224, -2.558), Vector3(-2.7, 2.329, -2.558)]
+"update": 1,
+"values": [false, true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("NavigationRegion3D/campfire:visible")
+tracks/5/path = NodePath("NavigationRegion3D/campfire2:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -218,35 +219,23 @@ tracks/5/keys = {
 }
 tracks/6/type = "value"
 tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("NavigationRegion3D/campfire2:visible")
+tracks/6/enabled = false
+tracks/6/path = NodePath("NavigationRegion3D/low_poly_helicopter:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 3.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = false
-tracks/7/path = NodePath("NavigationRegion3D/low_poly_helicopter:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "update": 0,
 "values": []
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("cam_rig/Label:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("cam_rig/Label:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 3.3, 5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
