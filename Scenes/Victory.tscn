@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b4d6bor5iyjau"]
+
+[node name="Victory" type="Node3D"]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasGroup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.721569, 0.654902, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasGroup"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 321.0
+offset_bottom = 181.0
+text = "YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1

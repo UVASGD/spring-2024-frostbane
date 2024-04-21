@@ -22,6 +22,7 @@ var canShuffle = true;
 var canAttack = true;
 var soundPlayed : bool = false
 func _physics_process(delta):
+	look_at(Vector3(player.global_position.x, player.global_position.y, player.global_position.z))
 	await get_tree().process_frame
 	if(inArea):	
 		var space = get_viewport().world_3d.direct_space_state

@@ -112,6 +112,8 @@ func try_repair_boat():
 		focused_interactable.repair()
 		wood_count.count -= 10
 		$HUD.update_inventory(wood_count.counts)
+		get_tree().change_scene_to_file("res://Scenes/Victory.tscn")
+		get_tree().unload_current_scene()
 		
 func try_feed_campfire():
 	if focused_interactable and focused_interactable.get_collision_layer() == CAMPFIRE_COLLISION_LAYER: 
