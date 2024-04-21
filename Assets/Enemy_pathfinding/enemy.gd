@@ -88,8 +88,6 @@ func update_target_location(target_location):
 	nav_agent.target_position = target_location
 	
 
-func _on_navigation_agent_3d_target_reached():
-	print("in range")
 	
 	
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
