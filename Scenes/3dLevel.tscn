@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://lx4y3jdjpndx"]
+[gd_scene load_steps=65 format=3 uid="uid://lx4y3jdjpndx"]
 
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="1_f3t52"]
 [ext_resource type="Script" path="res://Scenes/LevelManager.gd" id="1_tofn6"]
@@ -17,14 +17,13 @@
 [ext_resource type="MeshLibrary" uid="uid://d08jo8pwlvem2" path="res://Assets/Tree/treeMesh.tres" id="15_6eyif"]
 [ext_resource type="PackedScene" uid="uid://danr4a1nlo0f7" path="res://Assets/Campfire/campfire.tscn" id="16_b8f5f"]
 [ext_resource type="AudioStream" uid="uid://c0m3vtg2nosvh" path="res://Music/campfire-103566.mp3" id="17_b06pn"]
-[ext_resource type="PackedScene" uid="uid://ctsd6ssag23pv" path="res://Assets/Helicopter/low_poly_helicopter.glb" id="18_1msqf"]
 [ext_resource type="Texture2D" uid="uid://dbr0dix7a5wlf" path="res://GroundTexture/Grass002_1K-JPG_Color.jpg" id="18_tra7v"]
 [ext_resource type="PackedScene" uid="uid://6yq0k2wiuwsj" path="res://Scenes/Collectibles/Collectible.tscn" id="19_756ww"]
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="19_x51nb"]
 [ext_resource type="Texture2D" uid="uid://di20wn0dm2fgh" path="res://GroundTexture/Grass002_1K-JPG_NormalGL.jpg" id="21_07fd7"]
 [ext_resource type="Script" path="res://Scenes/CollectibleSpawner.gd" id="23_10lvv"]
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="25_xqrda"]
-[ext_resource type="PackedScene" uid="uid://hkv5rslwv72c" path="res://Scenes/Collectibles/Boat.tscn" id="28_ikp8e"]
+[ext_resource type="PackedScene" path="res://Scenes/Collectibles/Boat.tscn" id="28_ikp8e"]
 [ext_resource type="Resource" uid="uid://clfjmyiyqunjw" path="res://Scenes/woodCount.tres" id="28_nkukk"]
 [ext_resource type="PackedScene" uid="uid://xolbo6lxvp1f" path="res://Assets/Models/Rock Type3 03.dae" id="29_robeq"]
 [ext_resource type="PackedScene" uid="uid://dmnk2lfsdwvyl" path="res://Assets/Models/Rock Type6 03.dae" id="30_f1ekq"]
@@ -54,32 +53,6 @@ fog_sky_affect = 0.85
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_temporal_reprojection_amount = 0.75
-
-[sub_resource type="Curve" id="Curve_a7leb"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.38961, 0.989474), 0.0, 0.0, 0, 0, Vector2(0.720779, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_r2ul7"]
-curve = SubResource("Curve_a7leb")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x6hfn"]
-emission_shape = 3
-emission_box_extents = Vector3(100, 0, 100)
-direction = Vector3(0, -1, 0)
-gravity = Vector3(0, -1, 0)
-initial_velocity_min = 4.0
-initial_velocity_max = 4.0
-scale_min = 0.2
-scale_max = 0.2
-scale_curve = SubResource("CurveTexture_r2ul7")
-turbulence_noise_strength = 0.55
-turbulence_noise_scale = 0.35
-turbulence_noise_speed_random = 0.07
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 0.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_36wdv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e6h0p"]
 
@@ -281,7 +254,7 @@ data = PackedVector3Array(-5.5, 2.5, 5.5, 5.5, 2.5, 5.5, -5.5, -2.5, 5.5, 5.5, 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_y1i3j"]
 size = Vector3(1, 3, 2)
 
-[node name="World2" type="Node3D"]
+[node name="World" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.312267, 0)
 script = ExtResource("1_tofn6")
 
@@ -300,20 +273,8 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ruyhh")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.68342, 0)
-visible = false
-cast_shadow = 0
-emitting = false
-amount = 10000
-lifetime = 5.0
-randomness = 0.5
-visibility_aabb = AABB(-47.9182, -4, -48.8196, 95.8363, 8, 97.6391)
-process_material = SubResource("ParticleProcessMaterial_x6hfn")
-draw_pass_1 = SubResource("SphereMesh_36wdv")
-
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.79731, 1.47308, 17.6847)
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, -7.79731, -1.59938, 17.6847)
 script = ExtResource("6_ueyud")
 wood_count = ExtResource("28_nkukk")
 
@@ -332,7 +293,7 @@ current = true
 
 [node name="FogVolume" type="FogVolume" parent="Player/Neck/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0274956, -7.2097)
-size = Vector3(9, 15, 9)
+size = Vector3(7, 15, 7)
 shape = 1
 material = ExtResource("7_wmqau")
 
@@ -448,9 +409,6 @@ volume_db = 23.063
 unit_size = 0.1
 autoplay = true
 max_distance = 20.0
-
-[node name="low_poly_helicopter" parent="NavigationRegion3D" instance=ExtResource("18_1msqf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.52, 11.224, -2.558)
 
 [node name="spider lite " parent="NavigationRegion3D" instance=ExtResource("7_cagd0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3742, 4.76452, 0)
@@ -687,7 +645,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.717, 18.444)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.717, -15.778)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("target_nodes") instance=ExtResource("35_cj0ye")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.71112, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.71112, -2.64862, 0)
 target_nodes = [NodePath("../Target1"), NodePath("../Target2"), NodePath("../Target3")]
 
 [connection signal="died" from="Player/HealthCompoent" to="Player" method="_on_health_compoent_died"]
