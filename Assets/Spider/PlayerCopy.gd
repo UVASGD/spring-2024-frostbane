@@ -17,9 +17,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var neck := $Neck
 @onready var camera := $Neck/Camera3D
 @onready var ray = $'Neck/Camera3D/RayCast3D'
+@onready var animationPlayer = $AnimationPlayer
 
 func _ready():
 	$HUD.update_inventory(wood_count.count)
+	animationPlayer.play("PlayerGetUp") 
+	
 
 func _unhandled_input(event):
 	check_raycast()
