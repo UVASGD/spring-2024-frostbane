@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="HorrorWinter"
-run/main_scene="res://Scenes/3dTest-nomushrooms.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+run/main_scene="res://Scenes/3DSceneIntroAnimation.tscn"
+config/features=PackedStringArray("4.1", "Forward Plus")
 <<<<<<<HEADrun/main_scene="res://Scenes/3dTest.tscn"
 
 [autoload]

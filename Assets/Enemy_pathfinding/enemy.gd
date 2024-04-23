@@ -48,7 +48,7 @@ func _physics_process(delta):
 					nav_agent.set_velocity(Vector3(0, 0, 0))
 				
 				if(nav_agent.distance_to_target() < 1.27 and canAttack):
-						playerCheck.get_node("HealthCompoent").loseHealth(1)
+						playerCheck.get_node("HealthCompoent").loseHealth(3)
 						$AnimationPlayer.speed_scale = 16
 						$AnimationPlayer.play("swipeNLA")
 						canAttack = false
