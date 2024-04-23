@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://bqka8coahnj07"]
+[gd_scene load_steps=76 format=3 uid="uid://ctodnhv2pvdc"]
 
 [ext_resource type="Script" path="res://Scenes/LevelManager.gd" id="1_kttew"]
 [ext_resource type="MeshLibrary" uid="uid://dt3k0l0tphd0j" path="res://Assets/Foliage/foliageMesh.tres" id="2_145vk"]
@@ -54,6 +54,7 @@ fog_enabled = true
 fog_light_color = Color(0.113725, 0.12549, 0.14902, 1)
 fog_density = 0.05
 fog_sky_affect = 0.85
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_temporal_reprojection_amount = 0.75
 
@@ -96,6 +97,7 @@ script/source = "extends TextureRect
 func _on_health_compoent_lost_hp(percent):
 	self.modulate.a = (1 - percent) * maxOpacityPercentage
 	print((1 - percent) * 100)
+	print(self.modulate)
 "
 
 [sub_resource type="Animation" id="Animation_an35p"]
@@ -353,6 +355,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_pa4nl")
 script = SubResource("GDScript_pdq4u")
+maxOpacityPercentage = 0.8
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Player/Neck/Camera3D"]
@@ -735,8 +738,8 @@ stream = ExtResource("34_0tpmk")
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("wE")]
 script = ExtResource("35_hgt28")
-startingTime = 5
-totalTime = 10
+startingTime = 30
+totalTime = 61
 startingFog = 0.1
 endingFog = 0.8
 startingEmission = 1.0

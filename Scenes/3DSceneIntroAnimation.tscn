@@ -398,7 +398,8 @@ offset_right = 67.0
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Oh NO!"
+text = "Find the wood!
+Fix the boat!"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310642, -2.71734, -0.181522)
